@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Turismo 3.0 Alpha 13</title>
+<title>Turismo 3.0 Alpha 15</title>
 
 
 <meta name="theme-color" content="#122e43" />
@@ -370,7 +370,7 @@ body{background:var(--t3-bg)}
 html[data-layout="mobile"] .t3Alpha {margin:0 0 12px}html[data-layout="mobile"] .panel {border-radius:14px!important}
 
 
-/* Turismo 3.0 Alpha 13: perfil, archivos y ediciones PC / móvil. */
+/* Turismo 3.0 Alpha 15: perfil, archivos y ediciones PC / móvil. */
 body:not([data-page="settings"]) #settingsPanel{display:none!important}
 body:not([data-page="new"]) #lastSummaryPanel{display:none!important}
 .header{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:120px}
@@ -732,10 +732,7 @@ function initApp() {
   tripsBackupFile = "viajes_mya.bak.json";
   loadTrips(); loadData(); populateTripControls(); populateMessageControls();
   populateTripAdminSelect(); clearForm(); renderAll();
-  if (!localStorage.getItem("mya_v3_welcome")) {
-    localStorage.setItem("mya_v3_welcome","1");
-    alert("Los datos se guardan en este navegador y dispositivo. Exportá respaldos periódicamente y no uses navegación privada.");
-  }
+
 }
 
 function getAppFolder() {
@@ -1628,7 +1625,6 @@ function clearForm() {
   onStateChange(true);
   document.getElementById("clientHistory").style.display = "none";
   document.getElementById("clientHistory").innerHTML = "";
-  document.getElementById("fNombre").focus();
 }
 
 
@@ -2801,7 +2797,7 @@ function currentFilterDescription() {
   var fr = valueOf("filterResponsable");
   var fp = valueOf("filterPrioridad");
   if (q) parts.push('Búsqueda: "' + q + '"');
-  parts.push(document.getElementById("filterArchivados") && document.getElementById("filterArchivados").checked ? "Viajes archivados" : "Viajes activos");
+  parts.push(document.getElementById("filterArchivados") && document.getElementById("filterArchivados").checked ? "Viajes no activos" : "Viajes activos");
   if (fs) parts.push("Estado: " + fs);
   if (fv) {
     var trip = getTripById(fv);
@@ -3141,7 +3137,26 @@ function extraerNumeroTarifaV21(texto) {
 
 
 </script>
-</head>
+<style>
+[hidden]{display:none!important}
+.btn{font-family:inherit!important}
+.t14SectionHeading{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:20px}.t14SectionHeading h2{margin-top:0}.t14SectionHeading .btn{flex-shrink:0}
+.t14Back{border:0;background:transparent;color:#087c89;font:inherit;padding:0 0 16px;cursor:pointer;text-align:left}.t14Eyebrow{display:block;text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:700;color:#57818a;margin-bottom:10px}
+#tripAdminPanel .grid>tbody>tr:first-child>td:first-child{display:none}
+#tripAdminPanel .toolbar{gap:12px}.t14TripGate{padding:30px 24px;background:#f3f9f9;border:1px solid #d4e6e8;border-radius:20px;text-align:center;margin:6px 0 20px}.t14TripGate p{color:#627780;line-height:1.6;max-width:470px;margin:10px auto 24px}.t14TripGate h2{color:#193348}.t14NoTrips #followupFormPanel>.t5FormSection,.t14NoTrips #followupFormPanel>.toolbar,.t14NoTrips #followupFormPanel>#formTitle,.t14NoTrips #followupFormPanel>#editingNotice,.t14NoTrips #followupFormPanel>#t5RequiredNotice{display:none!important}
+.t14Storage{background:#f5fafb!important;border:1px solid #d8e8eb!important}.t14Storage h2{font-size:22px}.t14Storage p{line-height:1.65;color:#526c75}.t14Storage .btn{margin-top:10px}
+.turismoSetup{padding:24px 18px;box-sizing:border-box;overflow:auto;align-items:center;background:rgba(12,32,48,.82);backdrop-filter:blur(5px)}.turismoSetupBox{width:min(440px,100%);box-sizing:border-box;border-radius:24px!important;padding:30px!important;box-shadow:0 24px 70px #06152144!important}.turismoSetupBox h2{color:#183348;font-size:28px}.turismoSetupBox p{line-height:1.6}.turismoSetupBox p:last-child{border-top:1px solid #dfe8eb;margin-top:22px;padding-top:16px;color:#617781;font-size:13px!important}.turismoSetupBox input{min-height:48px;border-radius:12px!important}.turismoSetupBox button{min-height:48px;border-radius:12px!important}.t14SetupOpen{overflow:hidden}
+#t14WelcomeTitle{outline:none}.turismoSetupBox button{font-family:inherit;font-size:16px;font-weight:700}
+body[data-page="messages"] #t7MessageDelete{display:block}.t7MessageReadActions{grid-template-columns:repeat(2,minmax(0,1fr))!important}#t7MessageEditActions{display:flex;flex-wrap:wrap;gap:10px}#t7MessageEditActions .btn{flex:1;min-width:120px}
+.t14Notice{position:fixed;top:calc(16px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:10000;width:min(580px,calc(100% - 32px));box-sizing:border-box;display:flex;align-items:flex-start;gap:12px;background:#e9f6ef;color:#245d4c;border:1px solid #c5e2d2;border-radius:16px;padding:16px;box-shadow:0 8px 30px #142e4229}.t14Notice>span{display:grid;place-items:center;border:1px solid #76b29a;border-radius:50%;width:24px;height:24px;flex-shrink:0;font-weight:700}.t14Notice strong{font-size:15px}.t14Notice p{font-size:14px;line-height:1.55;margin:5px 0 0;white-space:pre-line}.t14Notice>button{background:transparent;border:0;color:inherit;font-size:25px;cursor:pointer;line-height:1;width:30px;min-height:30px;margin-left:auto;flex-shrink:0}.t14Notice[data-kind="info"]{background:#f0f7fa;border-color:#cddfe7;color:#264a5f}.t14Notice[data-kind="error"]{background:#fff2ef;border-color:#edcec7;color:#934331}
+.t14Decision{border:0;padding:0;width:min(460px,calc(100% - 36px));max-height:calc(100dvh - 48px);border-radius:22px;box-shadow:0 28px 80px #10253555;color:#193348;box-sizing:border-box}.t14Decision::backdrop{background:rgba(10,28,44,.6);backdrop-filter:blur(3px)}.t14Decision[open]{display:flex;flex-direction:column}.t14Decision header{padding:26px 26px 22px;background:#142e42;color:white;flex-shrink:0}.t14Decision .t14Eyebrow{color:#afc4cf}.t14Decision h2{margin:0;font-size:25px;line-height:1.25}.t14DecisionBody{padding:24px 26px;overflow:auto;min-height:0}.t14DecisionBody p{margin:0;line-height:1.65;white-space:pre-line}.t14DecisionBody label{display:block;margin-top:18px}.t14DecisionBody textarea{width:100%;box-sizing:border-box;resize:vertical;min-height:150px;margin-top:8px}.t14Decision footer{padding:18px 26px;border-top:1px solid #e2e9ec;display:flex;justify-content:flex-end;gap:12px;flex-shrink:0}.t14Decision footer .btn{min-height:46px}.t14PromptError{color:#a04234;margin-top:10px!important}.t14Decision .btn-danger{background:#b34943!important;color:#fff!important;border-color:#b34943!important}
+#t14RuleDescription{height:90px;resize:vertical;margin-top:8px}#t14LegacyConditions{background:#f6f8fa;border:1px solid #dfe7ea;border-radius:12px;padding:14px;margin-bottom:18px}#t14LegacyConditions summary{cursor:pointer;font-weight:600}.t14RuleDescription{color:#617780;line-height:1.55;margin:8px 0 0}.t3RuleItem>div:first-child{flex:1;min-width:0}.t3RuleItem>div:last-child{flex-shrink:0}.t14RuleNote{font-size:12px;color:#34705f;margin-top:8px}
+#t12ClientBody{padding-top:24px!important}.t12ClientStats{margin-top:0!important;gap:12px!important}.t12ClientStats span{line-height:1.45;overflow-wrap:normal}.t12ClientDialog .t5RecordHead{max-height:38dvh!important;padding-bottom:24px}#t14ClientHeaderContacts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-right:0}#t14ClientHeaderContacts a,#t14ClientHeaderContacts>span{display:flex;align-items:center;gap:9px;padding:8px 12px;color:#e4f1f5;background:#ffffff12;border:1px solid #ffffff29;border-radius:11px;text-decoration:none;font-size:13px;max-width:100%;box-sizing:border-box}#t14ClientHeaderContacts svg{width:18px;height:18px;flex-shrink:0}#t14ClientHeaderContacts span{overflow-wrap:anywhere}#t12ClientSubtitle{font-size:13px;color:#becfd9;line-height:1.5}
+.t14TripActions{display:flex;gap:10px;margin-top:14px}.t14TripActions>.btn{flex:1;min-width:0}.t12BrowseActions{display:flex;flex-wrap:wrap;gap:10px}.t12BrowseActions>.btn{flex:1}.t8TripCard button{width:auto}.t14CaseHeading{margin-bottom:6px}
+@media(max-width:640px){.t14SectionHeading{display:block}.t14SectionHeading>.btn{margin-top:12px;min-height:46px}.t12ClientStats{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px!important}.t12ClientStats>div{padding:15px 12px!important}.t12ClientStats span{font-size:12px!important}.t12ClientDialog .t5RecordHead{padding:24px!important;padding-right:68px!important}#t14ClientHeaderContacts{margin-right:-42px}.t12ClientDialog .t5RecordHead h2{font-size:26px}.t14Decision header,.t14DecisionBody{padding:22px}.t14Decision footer{padding:16px 22px}.t14Decision footer>.btn{flex:1}.t14Notice{top:calc(12px + env(safe-area-inset-top))}.t3RuleItem{display:block}.t3RuleItem>div:last-child{margin-top:12px}}
+
+</style><style>.t8TripTabs{display:flex;flex-wrap:wrap;gap:5px}.t8TripTabs button{flex:1 1 95px;padding:7px 10px}.t15State{display:block;border-radius:12px;padding:13px;background:#edf5f3;color:#235e51;line-height:1.5}.t15State small{display:block;margin-top:4px;color:#566f71}.t15LifecycleActions{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}.t15LifecycleActions .btn{flex:1 1 140px}.t15StatusNote{padding:15px;border:1px solid #dce7e8;border-radius:12px;background:#f3f7f8;line-height:1.5;margin:0 0 18px}.t15StatusNote strong{display:block;color:#23485c;margin-bottom:6px}.t15StatusNote p{margin:4px 0}.t8TripBadge.suspendido{background:#fff4dd;color:#855a18}.t8TripBadge.pospuesto{background:#eceafb;color:#65528c}.t15LifecycleFields{display:grid;gap:15px}.t15LifecycleFields label{display:block}.t15LifecycleFields input:not([type=checkbox]),.t15LifecycleFields textarea{width:100%;margin-top:5px;box-sizing:border-box}.t15LifecycleFields textarea{min-height:90px;resize:vertical}.t15LifecycleFields .t15Pending{display:flex;align-items:center;gap:9px}.t15LifecycleFields input:disabled{background:#edf1f3;color:#647780}.t15Error{color:#ad3535;line-height:1.5}.t15Events{list-style:none;margin:0;padding:0}.t15Events li{border-left:2px solid #b8d7cd;margin:0 0 16px;padding:0 0 4px 14px;line-height:1.5}.t15Events small{display:block;color:#6a7c85}.t15ClientCard{padding:20px;background:white;border:1px solid #dde6e9;border-radius:16px}.t15ClientCard h3{margin:0 0 10px}.t15ClientCard p{line-height:1.6}.t15ClientCard .toolbar{gap:8px;flex-wrap:wrap}.t15ClientCard .toolbar .btn{flex:1 1 120px}.t15ClientCard .t3Channels{margin:10px 0}.t15HistoricButton{margin-top:12px}.t15Quiet{color:#667d86}.t15Deleted{background:#f1f3f5;color:#536575}
+</style></head>
 
 <body onload="turismoStart()">
 <aside class="turismoSidebar" aria-label="Navegación">
@@ -3152,7 +3167,7 @@ function extraerNumeroTarifaV21(texto) {
  <button class="turismoNav" data-target="tripSummaryPanel" onclick="turismoGo(this)"><b>✈</b> Viajes</button>
  <button class="turismoNav" data-target="followupsPanel" onclick="turismoGo(this)"><b>☷</b> Seguimientos</button>
  <button class="turismoNav" data-target="messagePanel" onclick="turismoGo(this)"><b>✉</b> Mensajes</button>
- <button class="turismoNav" data-target="tripAdminPanel" onclick="turismoGo(this)"><b>⚙</b> Administrar viajes</button><button class="turismoNav" data-target="messageAdminPanel" onclick="turismoGo(this)"><b>⚙</b> Administrar mensajes</button>
+ 
  <button class="turismoNav" data-target="settingsPanel" onclick="turismoGo(this)"><b>◉</b> Configuración</button>
  <div class="turismoSidebarFooter"><strong id="turismoCompanySide">Tu empresa</strong><br><span id="turismoUserSide">Usuario</span><br><span>Datos locales del navegador · Respaldá regularmente</span></div>
  </aside>
@@ -3166,10 +3181,10 @@ function extraerNumeroTarifaV21(texto) {
 <div class="turismoMoreMenu" id="turismoMoreMenu">
 <button data-target="followupsPanel" onclick="turismoMobileGoTarget('followupsPanel')">☷ Seguimientos</button>
 <button data-target="messagePanel" onclick="turismoMobileGoTarget('messagePanel')">✉ Mensajes</button>
-<button data-target="tripAdminPanel" onclick="turismoMobileGoTarget('tripAdminPanel')">⚙ Administrar viajes</button><button data-target="messageAdminPanel" onclick="turismoMobileGoTarget('messageAdminPanel')">⚙ Administrar mensajes</button>
+
 <button data-target="settingsPanel" onclick="turismoMobileGoTarget('settingsPanel')">◉ Configuración</button>
 </div>
-<div class="turismoSetup" id="turismoSetup"><form class="turismoSetupBox" onsubmit="turismoSaveProfile(event)"><div style="color:#078fa1;font-size:31px">◈</div><h2>Bienvenido a Turismo</h2><p>Personalizá tu espacio de trabajo. Esta información se guarda en este navegador.</p><label for="turismoCompany">Nombre de tu empresa</label><input id="turismoCompany" maxlength="70" required placeholder="Ej.: Viajes del Sur"/><label for="turismoUser">Tu nombre</label><input id="turismoUser" maxlength="50" required placeholder="Ej.: Juan"/><button type="submit">Comenzar</button><p style="font-size:12px">Esta versión es una prueba local, sin cuentas ni sincronización entre dispositivos.</p></form></div>
+<div class="turismoSetup" id="turismoSetup" role="dialog" aria-modal="true" aria-labelledby="t14WelcomeTitle"><form class="turismoSetupBox" onsubmit="turismoSaveProfile(event)"><div style="color:#078fa1;font-size:31px">◈</div><h2 id="t14WelcomeTitle" tabindex="-1">Bienvenido a Turismo</h2><p>Primero, personalizá tu espacio de trabajo.</p><label for="turismoCompany">Nombre de tu empresa</label><input id="turismoCompany" maxlength="70" required placeholder="Ej.: Viajes del Sur"/><label for="turismoUser">Tu nombre</label><input id="turismoUser" maxlength="50" required placeholder="Ej.: Juan"/><button type="submit">Comenzar</button><p style="font-size:12px">Tus datos se guardan en este navegador y dispositivo. No hay sincronización automática. En Configuración podés exportar tus respaldos; evitá usar navegación privada.</p></form></div>
 <header class="header">
  <div class="turismoHeaderIdentity">
   <div class="welcome" id="turismoWelcome">Tu espacio de trabajo</div>
@@ -3180,11 +3195,11 @@ function extraerNumeroTarifaV21(texto) {
  <div id="turismoClock"><time id="turismoHeaderTime" aria-label="Hora actual"></time><small><time id="turismoHeaderDate" aria-label="Fecha actual"></time></small></div>
 </header>
 
-<div class="wrap"><div class="t3Alpha"><b>Turismo 3.0 · Alpha 13</b> — clientes con varios viajes, tarifas y condiciones guiadas, pagos y seguimientos configurables.</div><div class="turismoPageTitle"><h2 id="turismoPageTitle">Turismo</h2><p id="turismoPageDesc"></p></div><section class="turismoHero"><h2 id="turismoHeroGreeting">Panel principal</h2><p>Gestioná tus clientes, viajes y seguimientos desde un solo lugar.</p></section>
+<div class="wrap"><div class="t3Alpha"><b>Turismo 3.0 · Alpha 15</b> — clientes con varios viajes, tarifas y condiciones guiadas, pagos y seguimientos configurables.</div><div class="turismoPageTitle"><h2 id="turismoPageTitle">Turismo</h2><p id="turismoPageDesc"></p></div><section class="turismoHero"><h2 id="turismoHeroGreeting">Panel principal</h2><p>Gestioná tus clientes, viajes y seguimientos desde un solo lugar.</p></section>
 <div class="cards" id="cardsPanel"><button type="button" class="card" data-indicator="review" onclick="turismoOpenIndicator(this.dataset.indicator)"><span class="n" id="cHoy">0</span><span class="t">Clientes para revisar</span></button><button type="button" class="card" data-indicator="responsible" onclick="turismoOpenIndicator(this.dataset.indicator)"><span class="n" id="cMati">0</span><span class="t">Esperando responsable</span></button><button type="button" class="card" data-indicator="deposit" onclick="turismoOpenIndicator(this.dataset.indicator)"><span class="n" id="cPago">0</span><span class="t">Esperando seña</span></button><button type="button" class="card" data-indicator="pre" onclick="turismoOpenIndicator(this.dataset.indicator)"><span class="n" id="cPre">0</span><span class="t">Pre-reservas</span></button><button type="button" class="card" data-indicator="confirmed" onclick="turismoOpenIndicator(this.dataset.indicator)"><span class="n" id="cConf">0</span><span class="t">Confirmados</span></button><button type="button" class="card" data-indicator="all" onclick="turismoOpenIndicator(this.dataset.indicator)"><span class="n" id="cTotal">0</span><span class="t">Gestiones de viajes</span></button></div><button type="button" class="turismoCardsToggle" id="turismoCardsToggle" aria-controls="cardsPanel" aria-expanded="false" onclick="turismoToggleCards()">Ver todos los indicadores ↓</button>
 <div class="toolbar turismoHomeActions" style="margin-bottom:10px"><button class="btn btn-primary" onclick="turismoNavigate('followupFormPanel')">+ Nuevo seguimiento</button>
   <button class="btn btn-success" id="messageToggleBtn" onclick="turismoNavigate('messagePanel')">Mensajes</button>
-  <button class="btn" id="tripAdminToggleBtn" onclick="turismoNavigate('tripAdminPanel')">Administrar viajes</button>
+  <button class="btn" id="tripAdminToggleBtn" onclick="turismoNavigate('tripSummaryPanel')">Viajes</button>
 </div>
 
 <section id="t9MonthlyPanel" class="t9MonthlyPanel" aria-labelledby="t9MonthlyTitle">
@@ -3225,15 +3240,15 @@ function extraerNumeroTarifaV21(texto) {
 </div>
 
 <div class="panel" id="tripSummaryPanel">
- <h2>Tus viajes</h2><p class="t8TripIntro">Consultá cada viaje, sus pasajeros y mensajes. Para crearlo o cambiar su configuración, entrá a Administrar viajes.</p>
+ <div class="t14SectionHeading"><div><h2>Viajes</h2><p class="t8TripIntro">Creá tus viajes y consultá sus gestiones, pasajeros y mensajes.</p></div><button type="button" class="btn btn-primary" id="t14CreateTrip" onclick="turismoCreateTrip()">+ Crear viaje</button></div>
  <label class="t8TripSearch" for="t8TripSearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="t8TripSearch" type="search" placeholder="Buscar viaje o fecha" aria-label="Buscar viaje o fecha" oninput="renderTripSummary()"></label>
- <div class="t8TripTabs" role="group" aria-label="Estado de los viajes"><button type="button" data-trip-scope="all" aria-pressed="true" onclick="turismoSetTripScope(this.dataset.tripScope)">Todos</button><button type="button" data-trip-scope="active" aria-pressed="false" onclick="turismoSetTripScope(this.dataset.tripScope)">Activos</button><button type="button" data-trip-scope="archived" aria-pressed="false" onclick="turismoSetTripScope(this.dataset.tripScope)">Archivados</button></div>
+ <div class="t8TripTabs" role="group" aria-label="Estado de los viajes"><button type="button" data-trip-scope="all" aria-pressed="true" onclick="turismoSetTripScope(this.dataset.tripScope)">Todos</button><button type="button" data-trip-scope="active" aria-pressed="false" onclick="turismoSetTripScope(this.dataset.tripScope)">Activos</button><button type="button" data-trip-scope="suspended" aria-pressed="false" onclick="turismoSetTripScope(this.dataset.tripScope)">Suspendidos</button><button type="button" data-trip-scope="postponed" aria-pressed="false" onclick="turismoSetTripScope(this.dataset.tripScope)">Pospuestos</button><button type="button" data-trip-scope="archived" aria-pressed="false" onclick="turismoSetTripScope(this.dataset.tripScope)">Archivados</button></div>
  <p id="t8TripCount" class="t8TripCount" aria-live="polite"></p><div id="t8TripCards" class="t8TripCards"></div><p id="t8ArchiveHint" class="t8ArchiveHint" hidden>Los viajes archivados conservan sus pasajeros, pagos y seguimientos.</p>
 </div>
 
 <section class="panel" id="messagePanel" style="display:none">
- <div class="t12LibraryHeading"><div><h2>Mensajes</h2><p class="t3Guide">Encontrá el mensaje del viaje, leelo completo y copialo para responder.</p></div><button type="button" class="btn" onclick="turismoNavigate('messageAdminPanel')">Administrar mensajes</button></div>
- <div class="t12MessageFilters"><label>Viaje<select id="t12BrowseTrip" onchange="turismoRenderBrowseMessages()"></select></label><label>Buscar mensaje<input type="search" id="t12MessageSearch" placeholder="Nombre o texto del mensaje" oninput="turismoRenderBrowseMessages()"></label><label>Mostrar<select id="t12MessageScope" onchange="turismoRenderBrowseMessages()"><option value="all">Todos los viajes</option><option value="active">Viajes activos</option><option value="archived">Viajes archivados</option></select></label></div>
+ <div class="t12LibraryHeading"><div><h2>Mensajes</h2><p class="t3Guide">Encontrá el mensaje del viaje, leelo completo y copialo para responder.</p></div><button type="button" class="btn btn-primary" id="t14CreateMessage" onclick="newAdminMessage()">+ Crear mensaje</button></div>
+ <div class="t12MessageFilters"><label>Viaje<select id="t12BrowseTrip" onchange="turismoBrowseTripChanged()"></select></label><label>Buscar mensaje<input type="search" id="t12MessageSearch" placeholder="Nombre o texto del mensaje" oninput="turismoRenderBrowseMessages()"></label><label>Mostrar<select id="t12MessageScope" onchange="turismoRenderBrowseMessages()"><option value="all">Todos los viajes</option><option value="active">Viajes activos</option><option value="archived">Viajes no activos</option></select></label></div>
  <p id="t12MessageCount" class="t3SectionStats" aria-live="polite"></p><div id="t12BrowseCards" class="t6MessageCards"></div>
 </section>
 
@@ -3262,13 +3277,12 @@ function extraerNumeroTarifaV21(texto) {
 </div></div>
 
 <div class="panel" id="tripAdminPanel" style="display:none">
-  <h2>Administrar viajes</h2>
+  <button type="button" class="t14Back" onclick="turismoLeaveTripEditor()">← Volver a viajes</button><h2 id="t14TripEditorTitle">Crear viaje</h2>
   <p class="t8TripIntro">Configurá fechas, precios, señas, paradas y condiciones del viaje.</p>
   <table class="grid">
     <tr>
       <td style="width:30%">
-        <label>Editar viaje existente / crear nuevo</label>
-        <select id="adminTripSelect" onchange="if(this.value){loadTripAdmin(this.value);}else{clearTripAdminForm();}"></select>
+        <select id="adminTripSelect" hidden aria-label="Viaje en edición"></select>
         <input type="hidden" id="adminTripId" />
       </td>
       <td style="width:35%">
@@ -3280,8 +3294,7 @@ function extraerNumeroTarifaV21(texto) {
         <input type="text" id="adminTripDateText" placeholder="Ej.: 10 y 11 de octubre de 2026" aria-describedby="t9VisibleDateHint" /><label style="margin-top:10px">Fecha de salida</label><input type="date" id="adminTripStartDate" /><p id="t9VisibleDateHint" class="t9DateHint">La fecha visible se escribe como querés mostrarla: 10 y 11 de octubre de 2026, o 24 de septiembre. La fecha de salida puede ser distinta; por ejemplo, el 9.</p>
       </td>
       <td style="width:15%">
-        <label>Activo manualmente</label>
-        <input type="checkbox" id="adminTripEnabled" checked="checked" /> Sí
+        <label>Estado del viaje</label><div id="t15EditorState" class="t15State"></div><input type="checkbox" id="adminTripEnabled" checked hidden />
       </td>
     </tr>
     <tr>
@@ -3314,11 +3327,10 @@ function extraerNumeroTarifaV21(texto) {
     </tr>
     <tr>
       <td colspan="4">
-        <label>Condiciones especiales del viaje (descripción)</label>
-        <textarea id="adminTripConditions" style="height:60px" placeholder="Ej: Menores hasta 5 años gratis en falda."></textarea>
+        <details id="t14LegacyConditions" hidden><summary>Descripción de la versión anterior</summary><p class="t3Guide">Se conserva este texto del viaje. Las nuevas descripciones se agregan a cada condición.</p><textarea id="adminTripConditions" style="height:80px"></textarea></details>
 <label style="margin-top:8px">Condiciones que se aplican al precio</label>
 <p class="t3Guide">1. Elegí qué evaluar. 2. Indicá el rango. 3. Elegí el beneficio. El sistema te mostrará la regla antes de guardarla.</p>
-<label>Si coinciden varias condiciones<select id="adminRuleCombine"><option value="mejor">Aplicar el beneficio más favorable, sin acumular</option><option value="acumular">Aplicar todas en el orden de la lista</option></select></label>
+<label id="t14RuleCombine" hidden>Si coinciden varias condiciones<select id="adminRuleCombine"><option value="mejor">Aplicar el beneficio más favorable, sin acumular</option><option value="acumular">Aplicar todas en el orden de la lista</option></select></label>
 <div id="specialConditionsList" class="t3RuleList"></div>
 <div id="t3RuleEditor" class="t3RuleEditor" hidden>
  <div class="t3Fields">
@@ -3329,6 +3341,7 @@ function extraerNumeroTarifaV21(texto) {
   <label id="ruleValueWrap">Valor<input id="ruleValue" type="number" min="0" step="0.01" oninput="turismoRuleGuide()" /></label>
   <label id="ruleTariffWrap">Tarifa<select id="ruleTariff" onchange="turismoRuleGuide()"></select></label>
  </div>
+ <label for="t14RuleDescription">Descripción (opcional)</label><textarea id="t14RuleDescription" maxlength="1000" placeholder="Ej.: Viajan en falda, sin asiento propio."></textarea><p class="t3Guide">La descripción explica el beneficio. El cálculo usa el rango y el beneficio que configuraste.</p>
  <p id="rulePreview" class="t3RulePreview" role="status"></p>
  <div class="toolbar"><button type="button" class="btn btn-primary" onclick="turismoSaveRule()">Guardar condición</button><button type="button" class="btn" onclick="document.getElementById('t3RuleEditor').hidden=true">Cancelar</button></div>
 </div>
@@ -3339,14 +3352,14 @@ function extraerNumeroTarifaV21(texto) {
   </table>
   <div class="toolbar">
     <button class="btn btn-primary" onclick="saveTripAdmin()">Guardar viaje</button>
-    <button class="btn" onclick="document.getElementById('adminTripSelect').value=''; clearTripAdminForm();">Nuevo viaje</button>
-    <button class="btn btn-success" onclick="toggleTripArchiveAdmin()">Archivar / desarchivar</button>
-    <button class="btn btn-danger" onclick="deleteTripAdmin()">Eliminar viaje creado por error</button>
-    <span class="muted">Eliminar solo funciona si el viaje no tiene clientes vinculados. Si tiene historial, se archiva.</span>
+
+    <button id="t14ArchiveTrip" class="btn btn-success" onclick="toggleTripArchiveAdmin()">Archivar viaje</button>
+    <button id="t14DeleteTrip" class="btn btn-danger" onclick="deleteTripAdmin()">Eliminar viaje</button>
+    <div id="t15LifecycleActions" class="t15LifecycleActions" hidden><button type="button" class="btn" id="t15SuspendTrip" onclick="turismoOpenLifecycle('suspendido')">Suspender viaje</button><button type="button" class="btn" id="t15PostponeTrip" onclick="turismoOpenLifecycle('pospuesto')">Posponer viaje</button><button type="button" class="btn btn-primary" id="t15ActivateTrip" onclick="turismoActivateTrip()">Reactivar viaje</button></div><span id="t14TripDeleteHint" class="muted">Eliminar retira el viaje del catálogo y del trabajo diario. Clientes, pagos y gestiones se conservan en la ficha del cliente.</span>
   </div>
 
 
-</div> <div class="panel" id="followupFormPanel">
+</div> <div class="panel" id="followupFormPanel"><section id="t14TripGate" class="t14TripGate" hidden><span class="t14Eyebrow">Para empezar</span><h2>Creá tu primer viaje</h2><p>Las consultas se vinculan a un viaje. Agregá el primero para poder guardar un seguimiento.</p><button type="button" class="btn btn-primary" onclick="turismoCreateTrip('followupFormPanel')">+ Crear primer viaje</button></section>
     <h2 id="formTitle">Nuevo seguimiento</h2>
     <div id="editingNotice" class="editingNotice"></div>
 <p class="t3Guide">El viaje y el contacto del canal elegido son obligatorios. Podés completar el nombre más adelante.</p><p id="t5RequiredNotice" class="t5RequiredNotice" role="alert" hidden>Completá un contacto y seleccioná un viaje antes de guardar.</p><section class="t5FormSection"><h3>Cliente y viaje</h3><div class="t5FormGrid"><div class="t5Field" data-field="fNombre"><label for="fNombre">Nombre del cliente (opcional)</label>
@@ -3366,7 +3379,7 @@ function extraerNumeroTarifaV21(texto) {
         </div><div class="t5Field" data-field="fTelefono"><label id="fContactLabel" for="fTelefono">WhatsApp *</label>
           <div class="suggestWrap"><div class="t3ContactField"><select id="fPhonePrefix1" aria-label="Prefijo telefónico" hidden><option value="+598">+598 UY</option><option value="+54">+54 AR</option><option value="+55">+55 BR</option><option value="+56">+56 CL</option><option value="+595">+595 PY</option><option value="+1">+1</option><option value="+34">+34 ES</option></select>
             <input type="text" id="fTelefono" required aria-required="true" onkeyup="renderClientSuggestions('phone')" onblur="setTimeout(function(){var b=document.getElementById('phoneSuggestions'); if(b){b.style.display='none';}},150)">
-            </div><div id="phoneSuggestions" class="suggestBox"></div><div id="t13ContactProfile" hidden style="margin-top:8px"><button type="button" class="btn" id="t13ContactProfileButton" onclick="turismoOpenClientProfile(this.dataset.recordId)">Ver perfil del contacto</button></div>
+            </div><div id="phoneSuggestions" class="suggestBox"></div><div id="t13ContactProfile" hidden style="margin-top:8px"><button type="button" class="btn" id="t13ContactProfileButton" onclick="turismoOpenClientProfile(this.dataset.recordId)">Ver ficha del contacto</button></div>
           </div>
         </div><div class="t5Field t5Wide" data-field="t3AddContact"><p class="t3Guide">Podés usar un cliente existente para otro viaje. Su contacto se comparte; sus pagos, estado y comentarios pertenecen a cada gestión.</p><div class="t3ContactRow" id="t3ContactRow2" hidden><label>Canal adicional<select id="fCanal2" onchange="turismoUpdateContactFields()"><option>WhatsApp</option><option selected>Instagram</option><option>Facebook</option><option>Email</option><option>Telegram</option><option>Teléfono</option><option>Otro</option></select></label><label>País<select id="fPhonePrefix2"><option value="+598">+598 UY</option><option value="+54">+54 AR</option><option value="+55">+55 BR</option><option value="+56">+56 CL</option><option value="+595">+595 PY</option><option value="+1">+1</option><option value="+34">+34 ES</option></select></label><label><span id="fContactLabel2">Instagram</span><input type="text" id="fContacto2"></label><button type="button" class="btn" onclick="turismoRemoveContact(2)">Quitar canal</button></div><div class="t3ContactRow" id="t3ContactRow3" hidden><label>Canal adicional<select id="fCanal3" onchange="turismoUpdateContactFields()"><option>WhatsApp</option><option>Instagram</option><option selected>Facebook</option><option>Email</option><option>Telegram</option><option>Teléfono</option><option>Otro</option></select></label><label>País<select id="fPhonePrefix3"><option value="+598">+598 UY</option><option value="+54">+54 AR</option><option value="+55">+55 BR</option><option value="+56">+56 CL</option><option value="+595">+595 PY</option><option value="+1">+1</option><option value="+34">+34 ES</option></select></label><label><span id="fContactLabel3">Facebook</span><input type="text" id="fContacto3"></label><button type="button" class="btn" onclick="turismoRemoveContact(3)">Quitar canal</button></div><button type="button" class="btn" id="t3AddContact" onclick="turismoAddContact()">+ Agregar otro canal (máximo 3)</button></div></div></section><section class="t5FormSection"><h3>Pasajeros y salida</h3><div class="t5FormGrid"><div class="t5Field t5Wide" data-field="fPasajeros"><label>Total de pasajeros</label>
           <input type="number" id="fPasajeros" min="0" max="1000" inputmode="numeric" placeholder="Sin definir" onchange="turismoPassengerChanged('total')">
@@ -3510,7 +3523,7 @@ function extraerNumeroTarifaV21(texto) {
     </div>
   </div>
 
-  <section id="settingsPanel" aria-label="Configuración">
+  <section id="settingsPanel" aria-label="Configuración"><section class="panel t14Storage"><span class="t14Eyebrow">Tus datos</span><h2>Guardados en este dispositivo</h2><p>Los datos se guardan en este navegador y dispositivo. No se sincronizan automáticamente entre dispositivos.</p><p>Exportá un respaldo JSON periódicamente y evitá la navegación privada. Si cambiás de navegador o dispositivo, importá tu respaldo para continuar.</p><button type="button" class="btn" onclick="turismoShowBackups()">Ver opciones de respaldo</button></section>
     <div class="turismoSettingsGrid">
       <section class="panel turismoSettingsCard">
         <div class="turismoSectionIcon" aria-hidden="true">◉</div>
@@ -3613,7 +3626,7 @@ function extraerNumeroTarifaV21(texto) {
       </section>
       <section class="panel turismoSettingsCard">
         <div class="turismoSectionIcon" aria-hidden="true">↺</div>
-        <h2>Respaldos de seguimientos</h2>
+        <h2 id="t14Backups">Respaldos de seguimientos</h2>
         <p class="turismoSettingsHint">Guardá una copia JSON para recuperar tus registros o trasladarlos a otro dispositivo.</p>
         <div class="toolbar">
           <button class="btn btn-primary" onclick="manualBackup()">Exportar respaldo JSON</button>
@@ -3664,7 +3677,7 @@ function extraerNumeroTarifaV21(texto) {
           <label>Viaje</label>
           <select id="filterViaje" onchange="renderTable()"></select>
           <div class="small" style="margin-top:6px">
-            <label id="t9ArchiveFilter"><input type="checkbox" id="filterArchivados" onclick="onArchivedFilterChange()" /> Ver viajes archivados</label>
+            <label id="t9ArchiveFilter"><input type="checkbox" id="filterArchivados" onclick="onArchivedFilterChange()" /> Ver viajes no activos</label>
           </div>
         </td>
         <td style="width:15%">
@@ -4509,7 +4522,7 @@ function saveRecord(){
  var clientId=turismoResolveClient(contacts),departure=t3Value('fSalidaFecha');
  contacts=turismoContactsForClient(clientId,contacts);name=name||turismoKnownClientName(clientId);
  var duplicate=!editingId&&records.find(function(record){return record.clienteId===clientId&&record.viajeId===tripId&&record.fechaSalida===departure});
- if(duplicate&&!confirm('Este cliente ya tiene una gestión de este viaje y fecha. ¿Crear otra gestión independiente?'))return;
+ if(duplicate&&!turismoApproveDuplicate(clientId,tripId,departure))return;
  var now=nowText(),record=Object.assign({},previous||{},follow,{id:editingId||newId(),clienteId:clientId,nombre:name,contactos:contacts,canal:t3Value('fCanal'),canalOrigen:previous?(previous.canalOrigen||previous.canal||t3Value('fCanal')):t3Value('fCanal'),telefono:(contacts.find(function(contact){return contact.canal==='WhatsApp'||contact.canal==='Teléfono'})||{}).valor||'',viajeId:tripId,viaje:trip?trip.name:'Otro / consulta',fechaViaje:t3Value('fFechaViaje'),fechaSalida:departure,fechaReserva:t3Value('fReservaFecha'),pasajeros:t3Value('fPasajeros'),adultos:t3Value('fAdultos'),menores:t3Value('fMenores'),pricingDetails:turismoSnapshotDetails(previous,quote),detallePasajeros:list,parada:t3Value('fParada'),paradaHora:turismoFormStopTime,senaMonto:t3Value('fSenaMonto'),depositVersion:2,senaPasajerosConSeña:turismoFormDeposit().payers,senaExentos:turismoFormDeposit().free,fareSnapshot:turismoFormFare(),senaPorPersona:turismoAmount(t3Value('fSenaMonto')),senaRequeridaTotal:turismoFormDeposit().required,tarifa:t3Value('fTarifa'),precioViaje:String(quote.total),senaPagada:t3Value('fSenaPagada'),saldoPendiente:String(turismoRound(quote.total-paid)),senaEstado:turismoFormDeposit().free?turismoFormDeposit().state:t3Value('fSenaEstado'),metodoPago:t3Value('fMetodoPago'),mercadoTipo:['Tarjeta','Mercado Pago'].includes(t3Value('fMetodoPago'))?t3Value('fMercadoTipo'):'',tarjetaInstitucion:['Tarjeta','Mercado Pago'].includes(t3Value('fMetodoPago'))?t3Value('fTarjetaInstitucion'):'',cuotas:t3Value('fMetodoPago')==='Mercado Pago'&&t3Value('fMercadoTipo')==='Crédito'?t3Value('fCuotas'):'',bancoPago:t3Value('fMetodoPago')==='Transferencia bancaria'?t3Value('fBancoPago'):'',giroRed:t3Value('fMetodoPago')==='Giro'?t3Value('fGiroRed'):'',estado:follow.estado,responsable:t3Value('fResponsable'),prioridad:follow.prioridad,accion:t3Value('fAccion'),comentarios:cloneFormComments(),notas:latestCommentFromArray(formComments)?latestCommentFromArray(formComments).texto:'',reviewVersion:3,creado:previous&&previous.creado||previous&&previous.actualizado||now,creadoEstimado:previous?Boolean(previous.creadoEstimado||!previous.creado):false,actualizado:now});
  if(!(turismoFrozenQuote&&turismoFrozenQuote.legacy))Object.assign(record,{pricingVersion:3,precioBase:quote.subtotal,importeBaseTarifa:quote.tariffBase,descuentoTotal:quote.discount,recargoRate:quote.rate,recargoImporte:quote.surcharge,recargoPct:quote.rate?quote.rate+'%':''});
  var changed=!previous||previous.estado!==record.estado||previous.accion!==record.accion||JSON.stringify(commentsForRecord(previous))!==JSON.stringify(record.comentarios);
@@ -4604,13 +4617,13 @@ function turismoExcelExtra(write,list){
  write('</Table></Worksheet>');
 }
 function myaImportJson(file,kind){
- if(!file)return;var reader=new FileReader();reader.onerror=function(){alert('No se pudo leer el archivo.')};reader.onload=function(){
+ if(!file)return;var reader=new FileReader();reader.onerror=function(){alert('No se pudo leer el archivo.')};reader.onload=async function(){
   var beforeRecords=records,beforeTrips=TRIPS;
   try{
    var data=JSON.parse(reader.result);if(!Array.isArray(data))throw Error('Se esperaba una lista JSON.');
    if(kind==='trips'){if(!validTripCatalog(data))throw Error('Catálogo de viajes no válido.');}
    else if(data.some(function(record){return !record||typeof record!=='object'||Array.isArray(record)||(!record.nombre&&!record.telefono&&!Array.isArray(record.contactos))})){throw Error('La lista contiene seguimientos no válidos.');}
-   if(!confirm('¿Importar '+(kind==='trips'?'los viajes':'los seguimientos')+'? Se reemplazan los datos actuales y se conserva un respaldo local anterior.'))return;
+   if(!await turismoConfirm({title:'Importar '+(kind==='trips'?'viajes':'seguimientos'),text:'Se reemplazarán los datos actuales. Se conserva un respaldo local anterior.',accept:'Importar',danger:true}))return;
    if(kind==='trips'){
     TRIPS=normalizeTripCatalog(data);if(!persistTrips(false))throw Error('No se pudo guardar el catálogo.');
     populateTripControls();populateMessageControls();populateTripAdminSelect();
@@ -4623,11 +4636,11 @@ function myaImportJson(file,kind){
 }
 function turismoExportSettings(){myaDownload('Turismo_Ajustes_'+stampFile()+'.json',JSON.stringify({formato:'turismo-ajustes',version:3,perfil:turismoGetProfile(),config:turismoConfig()},null,2))}
 function turismoImportSettings(file){
- if(!file)return;var reader=new FileReader();reader.onload=function(){try{
+ if(!file)return;var reader=new FileReader();reader.onload=async function(){try{
   var value=JSON.parse(reader.result);if(value.formato!=='turismo-ajustes'||!value.perfil||!value.config)throw Error('Elegí un archivo de ajustes de Turismo.');
   var cfg=value.config;if(!Number.isFinite(Number(cfg.creditRate))||cfg.creditRate<0||cfg.creditRate>100||!cfg.follow||!Number.isInteger(Number(cfg.follow.valor))||cfg.follow.valor<1||cfg.follow.valor>365||!['dias','horas'].includes(cfg.follow.unidad))throw Error('Los ajustes contienen valores no válidos.');
   if(cfg.window&&cfg.window.enabled&&(!Array.isArray(cfg.window.days)||!cfg.window.days.length||cfg.window.start>=cfg.window.end))throw Error('El horario de seguimiento no es válido.');
-  if(!confirm('¿Importar estos datos de perfil y configuración? Los seguimientos y viajes se conservan.'))return;
+  if(!await turismoConfirm({title:'Importar configuración',text:'Se reemplazarán los datos del perfil y la configuración. Los seguimientos y viajes se conservan.',accept:'Importar'}))return;
   var oldProfile=localStorage.getItem(turismoProfileKey),oldConfig=localStorage.getItem(turismoConfigKey);
   try{localStorage.setItem(turismoProfileKey,JSON.stringify(value.perfil));localStorage.setItem(turismoConfigKey,JSON.stringify(value.config))}catch(error){if(oldProfile!==null)localStorage.setItem(turismoProfileKey,oldProfile);if(oldConfig!==null)localStorage.setItem(turismoConfigKey,oldConfig);throw error}
   turismoLoadSettingsProfile();turismoRefresh();turismoPopulateInstitutions();turismoUpdateContactFields();renderAll();alert('Ajustes importados.');
@@ -4948,7 +4961,7 @@ function turismoStart(){TurismoAlpha5.start();turismoRefreshDeposit(false);turis
  </div>
  <footer class="t7MessageFooter">
   <div id="t7MessageReadActions" class="t7MessageReadActions"><button type="button" id="t7MessageCopy" class="btn btn-primary" onclick="turismoCopyOpenMessage()">Copiar</button><button type="button" id="t7MessageEdit" class="btn" onclick="turismoEditOpenMessage()">Editar</button><button type="button" class="btn btn-danger" id="t7MessageDelete" onclick="turismoDeleteOpenMessage()">Eliminar</button><button type="button" class="btn" onclick="turismoCloseMessage()">Cerrar</button></div>
-  <div id="t7MessageEditActions" class="t7MessageEditActions" hidden><button type="button" id="t7MessageSave" class="btn btn-primary" onclick="saveAdminMessage()">Guardar mensaje</button><button type="button" class="btn" onclick="turismoCloseMessage()">Cancelar</button></div>
+  <div id="t7MessageEditActions" class="t7MessageEditActions" hidden><button type="button" id="t7MessageSave" class="btn btn-primary" onclick="saveAdminMessage()">Guardar mensaje</button><button type="button" id="t14MessageDelete" class="btn btn-danger" onclick="turismoDeleteOpenMessage()" hidden>Eliminar mensaje</button><button type="button" class="btn" onclick="turismoCloseMessage()">Cancelar</button></div>
  </footer>
 </dialog>
 
@@ -5037,7 +5050,7 @@ function turismoStart(){
 <dialog id="t8TripDialog" class="t8Dialog" aria-labelledby="t8TripTitle">
  <header class="t8DialogHead"><div><span>Ficha del viaje</span><h2 id="t8TripTitle"></h2><p id="t8TripStatus"></p></div><button type="button" class="t5IconButton" aria-label="Cerrar viaje" onclick="turismoCloseTrip()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
  <div id="t8TripBody" class="t8DialogBody"></div>
- <footer class="t8DialogFooter t8TripActions"><button type="button" class="btn btn-primary" onclick="turismoTripRecordsView(turismoTripDialogId,false)">Ver gestiones</button><button type="button" class="btn" onclick="turismoTripMessagesView()">Ver mensajes</button><button type="button" class="btn" onclick="turismoTripAdminView()">Administrar viaje</button><button type="button" class="btn" onclick="turismoCloseTrip()">Cerrar</button></footer>
+ <footer class="t8DialogFooter t8TripActions"><button type="button" class="btn btn-primary" onclick="turismoTripRecordsView(turismoTripDialogId,false)">Ver gestiones</button><button type="button" class="btn" id="t15TripMessages" onclick="turismoTripMessagesView()">Ver mensajes</button><button type="button" class="btn" id="t15TripEdit" onclick="turismoTripAdminView()">Editar viaje</button><button type="button" class="btn" onclick="turismoCloseTrip()">Cerrar</button></footer>
 </dialog>
 <dialog id="t8OverviewDialog" class="t8Dialog" aria-labelledby="t8OverviewTitle">
  <header class="t8DialogHead"><div><span>Tu actividad registrada</span><h2 id="t8OverviewTitle">Resumen operativo</h2><p>Gestiones, canales y mensajes guardados</p></div><button type="button" class="t5IconButton" aria-label="Cerrar resumen" onclick="turismoCloseOverview()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
@@ -5184,7 +5197,7 @@ function turismoOpenDashboardFilter(filter){
  turismoDashboardFilter=null;TurismoAlpha8.resetFilters();turismoNavigate('followupsPanel');turismoDashboardFilter=filter;populateFilterTripControl('');renderTable();
 }
 function turismoOpenIndicator(kind){
- if(kind==='all'){turismoOpenDashboardFilter({kind:'all',title:'Todas las gestiones · Incluye viajes activos y archivados'});return}
+ if(kind==='all'){turismoOpenDashboardFilter({kind:'all',title:'Todas las gestiones · Incluye el historial de todos los viajes'});return}
  if(kind==='review'){turismoOpenDashboardFilter({kind:'review',title:'Clientes para revisar · Gestiones pendientes o atrasadas de viajes activos'});return}
  var states={responsible:'Esperando a Mati',deposit:'Esperando seña',pre:'Pre-reserva',confirmed:'Confirmado'};if(states[kind])turismoOpenDashboardFilter({kind:'status',state:states[kind],title:turismoStateName(states[kind])+' · Viajes activos'});
 }
@@ -5192,7 +5205,7 @@ function turismoOpenActiveTrips(){turismoDashboardFilter=null;turismoRenderDashb
 function turismoOpenMonthly(kind){
  var data=turismoMonthlyData(t3Value('t9Period')),rank=kind==='channel'?data.channels:data.states,values=kind==='period'?[]:rank.leaders.map(function(item){return item.name}),title=data.name;
  if(kind==='channel')title+=' · Canal: '+(values.join(' / ')||'Sin datos de canal');if(kind==='state')title+=' · Estado: '+(values.map(turismoStateName).join(' / ')||'Sin datos de estado');
- turismoOpenDashboardFilter({kind:kind,period:data.period,monthKey:turismoLocalDateISO(new Date()).slice(0,7),values:values,title:title+' · Incluye viajes activos y archivados'});
+ turismoOpenDashboardFilter({kind:kind,period:data.period,monthKey:turismoLocalDateISO(new Date()).slice(0,7),values:values,title:title+' · Incluye el historial de todos los viajes'});
 }
 function renderDashboard(){TurismoAlpha8.dashboard();turismoRenderMonthly();document.querySelectorAll('#cardsPanel button[data-indicator]').forEach(function(button){button.setAttribute('aria-label',button.querySelector('.t').textContent+': '+button.querySelector('.n').textContent+'. Ver registros')})}
 function turismoNavigate(target){
@@ -5257,7 +5270,7 @@ function turismoRenderMonthly(){
 }
 function turismoMonthlyChanged(){if(t3Value('t9Period')==='custom'&&!t3Value('t10Month'))t3El('t10Month').value=turismoLocalDateISO(new Date()).slice(0,7);turismoRenderMonthly()}
 function turismoRenderDashboardFilter(){
- var filter=turismoDashboardFilter,state=t3Value('filterEstado'),review=t3El('filterHoy').checked,archived=t3El('filterArchivados').checked,stateName=turismoStateName(state),description=filter?filter.title:stateName?stateName+' · Viajes '+(archived?'archivados':'activos'):review?'Para revisar · Gestiones pendientes o atrasadas de viajes activos':'';
+ var filter=turismoDashboardFilter,state=t3Value('filterEstado'),review=t3El('filterHoy').checked,archived=t3El('filterArchivados').checked,stateName=turismoStateName(state),description=filter?filter.title:stateName?stateName+' · Viajes '+(archived?'no activos':'activos'):review?'Para revisar · Gestiones pendientes o atrasadas de viajes activos':'';
  if(review&&stateName&&!filter)description+=' · Para revisar';document.body.classList.toggle('t9DashboardScoped',!!filter);
  ['t9CaseFilter','t9ClientFilter'].forEach(function(id){var box=t3El(id);if(!box)return;box.hidden=!description;if(description){box.querySelector('span').textContent=description;box.querySelector('button').textContent='Volver al listado'}});
  var heading=t3El('t10CasesHeading');if(heading)heading.textContent=stateName?'Gestiones · '+stateName:review?'Gestiones para revisar':filter?'Consultas filtradas':'Seguimientos por viaje';
@@ -5267,14 +5280,14 @@ function turismoRenderDashboardFilter(){
 }
 function turismoOpenIndicator(kind){
  var states={responsible:'Esperando a Mati',deposit:'Esperando seña',pre:'Pre-reserva',confirmed:'Confirmado'};
- if(kind==='all'){turismoOpenDashboardFilter({kind:'all',title:'Todas las gestiones · Incluye viajes activos y archivados'});return}
+ if(kind==='all'){turismoOpenDashboardFilter({kind:'all',title:'Todas las gestiones · Incluye el historial de todos los viajes'});return}
  if(kind!=='review'&&!states[kind])return;resetFilters();if(states[kind])t3El('filterEstado').value=states[kind];if(kind==='review')t3El('filterHoy').checked=true;turismoNavigate('followupsPanel');renderTable();
 }
 function turismoOpenMonthly(kind){
  var data=turismoMonthlyData(t3Value('t9Period'));if(!data.monthKey)return;var rank=kind==='channel'?data.channels:data.states,values=kind==='period'?[]:rank.leaders.map(function(item){return item.name});if(kind!=='period'&&!values.length)return;
  var title=data.name;if(kind==='channel')title+=' · Canal: '+values.join(' / ');if(kind==='state')title+=' · Estado: '+values.map(turismoStateName).join(' / ');
- var scope=kind==='state'&&values.length===1?'period':kind;turismoOpenDashboardFilter({kind:scope,period:'month',monthKey:data.monthKey,values:values,title:title+' · Incluye viajes activos y archivados'});
- if(kind==='state'&&values.length===1){t3El('filterEstado').value=values[0];turismoDashboardFilter.title=data.name+' · Incluye viajes activos y archivados';renderTable()}
+ var scope=kind==='state'&&values.length===1?'period':kind;turismoOpenDashboardFilter({kind:scope,period:'month',monthKey:data.monthKey,values:values,title:title+' · Incluye el historial de todos los viajes'});
+ if(kind==='state'&&values.length===1){t3El('filterEstado').value=values[0];turismoDashboardFilter.title=data.name+' · Incluye el historial de todos los viajes';renderTable()}
 }
 function turismoNavigate(target){TurismoAlpha9.navigate(target);turismoRenderDashboardFilter()}
 
@@ -5380,7 +5393,7 @@ function turismoOpenRecord(id){
 
 </script>
 <dialog id="t12ClientDialog" class="t5RecordDialog t12ClientDialog" aria-labelledby="t12ClientName">
- <header class="t5RecordHead"><span class="t5RecordKicker">Perfil del cliente</span><h2 id="t12ClientName"></h2><p id="t12ClientSubtitle"></p><button type="button" class="t5IconButton" aria-label="Cerrar perfil del cliente" onclick="turismoCloseClientProfile()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+ <header class="t5RecordHead"><span class="t5RecordKicker">Ficha del cliente</span><h2 id="t12ClientName"></h2><p id="t12ClientSubtitle"></p><div id="t14ClientHeaderContacts"></div><button type="button" class="t5IconButton" aria-label="Cerrar ficha del cliente" onclick="turismoCloseClientProfile()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
  <div id="t12ClientBody" class="t5RecordBody"></div><footer class="t5RecordFooter"><button type="button" class="btn" onclick="turismoCloseClientProfile()">Cerrar</button><button type="button" id="t12ClientNewTrip" class="btn btn-primary" onclick="turismoClientStartTrip()">+ Otro viaje para este cliente</button></footer>
 </dialog>
 
@@ -5447,13 +5460,13 @@ function turismoRenderBrowseMessages(){
  t3El('t12MessageCount').textContent=turismoCountLabel(list.length,'mensaje disponible','mensajes disponibles');
 }
 function turismoShowMessage(id,tripId,mode){
- if(mode==='edit'&&document.body.dataset.page==='messages'){
+ if(false&&mode==='edit'&&document.body.dataset.page==='messages'){
   var bound=tripId||turismoMessageSession&&turismoMessageSession.tripId||t3Value('t12BrowseTrip');
   if(!turismoCloseMessage())return;turismoNavigate('messageAdminPanel');if(document.body.dataset.page!=='messageadmin')return;
   t3El('t6MessageTrip').value=bound;turismoMessageTripChanged();tripId=bound;
  }
  TurismoAlpha11.showMessage(id,tripId,mode);
- t3El('t7MessageEdit').textContent=document.body.dataset.page==='messages'?'Administrar':'Editar';
+ t3El('t7MessageEdit').textContent='Editar';
 }
 function turismoEditOpenMessage(){if(turismoMessageSession)turismoEditMessage(turismoMessageSession.messageId,turismoMessageSession.tripId)}
 function turismoRenderMessageLibrary(){TurismoAlpha11.messageLibrary();turismoBrowseMessageTrips()}
@@ -5463,7 +5476,7 @@ function turismoTripMessagesView(){var id=turismoTripDialogId;turismoCloseTrip()
 /* El cliente se identifica por clienteId; las gestiones conservan sus propios datos. */
 var turismoClientProfileId='',turismoClientReturnFocus=null,turismoClientReturnRecord='';
 function turismoClientRecords(seed){var record=typeof seed==='string'?findRecord(seed):seed;if(!record)return [];return records.filter(function(item){return record.clienteId?item.clienteId===record.clienteId:item.id===record.id}).slice().sort(function(a,b){return (turismoParseTime(b.actualizado)||0)-(turismoParseTime(a.actualizado)||0)})}
-function turismoClientNameLink(record){return '<button type="button" class="t12ClientLink" data-record-id="'+esc(record.id)+'" onclick="turismoOpenClientProfile(this.dataset.recordId)" title="Ver perfil e historial del cliente">'+esc(record.nombre||displayClient(record))+'</button>'}
+function turismoClientNameLink(record){return '<button type="button" class="t12ClientLink" data-record-id="'+esc(record.id)+'" onclick="turismoOpenClientProfile(this.dataset.recordId)" title="Ver ficha e historial del cliente">'+esc(record.nombre||displayClient(record))+'</button>'}
 function turismoCaseCard(record){return TurismoAlpha11.caseCard(record).replace('<h3>'+esc(record.nombre||displayClient(record))+'</h3>','<h3>'+turismoClientNameLink(record)+'</h3>').replace('onclick="turismoNewTripForClient(this.dataset.recordId)"','onclick="turismoOpenClientProfile(this.dataset.recordId)"')}
 function turismoClientCard(group){var record=group.slice().sort(function(a,b){return String(b.actualizado||'').localeCompare(String(a.actualizado||''))})[0];return TurismoAlpha11.clientCard(group).replace('<h3>'+esc(record.nombre||displayClient(record))+'</h3>','<h3>'+turismoClientNameLink(record)+'</h3>').replace('onclick="turismoNewTripForClient(this.dataset.recordId)"','onclick="turismoOpenClientProfile(this.dataset.recordId)"')}
 function turismoClientActivity(list){
@@ -5486,9 +5499,9 @@ function turismoOpenClientProfile(id){
  t3El('t12ClientName').textContent=record.nombre||displayClient(record);t3El('t12ClientSubtitle').textContent=turismoCountLabel(list.length,'gestión registrada','gestiones registradas')+' · Todos sus viajes';
  var body='<div class="t12ClientStats"><div><b>'+list.length+'</b><span>Gestiones</span></div><div><b>'+new Set(list.map(function(item){return item.viajeId||item.viaje})).size+'</b><span>Viajes distintos</span></div><div><b>'+active+'</b><span>Gestiones en viajes activos</span></div></div>';
  var contacts=turismoRecordContacts(record);body+='<section class="t5DetailSection"><h3>Contacto</h3>'+(contacts.length?'<div class="t12ClientContacts">'+contacts.map(function(contact){var url=turismoChannelURL(contact);return url?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+turismoChannelIcon(contact.canal)+'<span><small>'+esc(contact.canal)+'</small>'+esc(contact.valor)+'</span></a>':'<p>'+esc(contact.canal)+': '+esc(contact.valor)+'</p>'}).join('')+'</div>':'<p class="t3Guide">Contacto pendiente de registrar.</p>')+'</section>';
- body+='<section class="t5DetailSection"><h3>Sus viajes y gestiones</h3><p class="t3Guide">Incluye el historial archivado. Cada gestión tiene sus propios pasajeros, pagos y seguimiento.</p>'+list.map(function(item){var trip=getTripForRecord(item),archived=trip&&!isTripActive(trip),deposit=turismoDepositForRecord(item),attributes=' data-record-id="'+esc(item.id)+'"';return '<article class="t12ClientCase"><h4>'+esc(item.viaje||trip&&trip.name||'Viaje')+'</h4><span class="pill">'+esc(item.estado||'Consulta nueva')+'</span>'+(archived?'<span class="pill t12Archived">Viaje archivado</span>':'')+'<dl class="t5DetailGrid">'+turismoDetailField('Fecha del viaje',item.fechaViaje)+turismoDetailField('Salida',item.fechaSalida?formatDate(item.fechaSalida):'')+turismoDetailField('Reserva',item.fechaReserva?formatDate(item.fechaReserva):'')+turismoDetailField('Pasajeros',item.pasajeros)+turismoDetailField('Total registrado',turismoMoney(turismoAmount(item.precioViaje)))+turismoDetailField('Abonado',turismoMoney(turismoAmount(item.senaPagada)))+turismoDetailField('Saldo de esta gestión',turismoMoney(turismoAmount(item.saldoPendiente)))+turismoDetailField('Seña requerida',turismoMoney(deposit.required))+turismoDetailField('Próximo paso',item.accion)+turismoDetailField('Próxima revisión',turismoDueAt(item)?turismoDateTimeLabel(turismoDueAt(item)):'')+'</dl><div class="toolbar"><button type="button" class="btn"'+attributes+' onclick="turismoClientOpenCase(this.dataset.recordId,false)">Abrir ficha</button><button type="button" class="btn"'+attributes+' onclick="turismoClientOpenCase(this.dataset.recordId,true)">Editar seguimiento</button></div></article>'}).join('')+'</section>';
+ body+='<section class="t5DetailSection"><h3>Sus viajes y gestiones</h3><p class="t3Guide">Incluye viajes archivados, suspendidos, pospuestos y eliminados. Cada gestión conserva sus pasajeros, pagos y seguimiento.</p>'+list.map(function(item){var trip=getTripForRecord(item),archived=trip&&!isTripActive(trip),deposit=turismoDepositForRecord(item),attributes=' data-record-id="'+esc(item.id)+'"';return '<article class="t12ClientCase"><h4>'+esc(item.viaje||trip&&trip.name||'Viaje')+'</h4><span class="pill">'+esc(item.estado||'Consulta nueva')+'</span>'+(archived?'<span class="pill t12Archived">Viaje archivado</span>':'')+'<dl class="t5DetailGrid">'+turismoDetailField('Fecha registrada del viaje',item.fechaViaje)+turismoDetailField('Salida registrada',item.fechaSalida?formatDate(item.fechaSalida):'')+turismoDetailField('Reserva',item.fechaReserva?formatDate(item.fechaReserva):'')+turismoDetailField('Pasajeros',item.pasajeros)+turismoDetailField('Total registrado',turismoMoney(turismoAmount(item.precioViaje)))+turismoDetailField('Abonado',turismoMoney(turismoAmount(item.senaPagada)))+turismoDetailField('Saldo de esta gestión',turismoMoney(turismoAmount(item.saldoPendiente)))+turismoDetailField('Seña requerida',turismoMoney(deposit.required))+turismoDetailField('Próximo paso',item.accion)+turismoDetailField('Próxima revisión',turismoDueAt(item)?turismoDateTimeLabel(turismoDueAt(item)):'')+'</dl><div class="toolbar"><button type="button" class="btn"'+attributes+' onclick="turismoClientOpenCase(this.dataset.recordId,false)">Abrir ficha</button><button type="button" class="btn"'+attributes+' onclick="turismoClientOpenCase(this.dataset.recordId,true)">Editar seguimiento</button></div></article>'}).join('')+'</section>';
  body+='<section class="t5DetailSection"><h3>Actividad registrada</h3><p class="t3Guide">Consultas, comentarios y últimas actualizaciones guardadas en sus gestiones.</p>'+turismoClientActivity(list)+'</section>';
- t3El('t12ClientBody').innerHTML=body;t3El('t12ClientBody').scrollTop=0;if(!dialog.open)dialog.showModal();document.body.classList.add('t12ClientOpen');dialog.querySelector('[aria-label="Cerrar perfil del cliente"]').focus({preventScroll:true});
+ t3El('t12ClientBody').innerHTML=body;t3El('t12ClientBody').scrollTop=0;if(!dialog.open)dialog.showModal();document.body.classList.add('t12ClientOpen');dialog.querySelector('[aria-label="Cerrar ficha del cliente"]').focus({preventScroll:true});
 }
 function turismoCloseClientProfile(returnToRecord){
  var dialog=t3El('t12ClientDialog');if(!dialog||!dialog.open)return;
@@ -5593,7 +5606,7 @@ function displayClient(record){
 }
 function turismoContactProfileHint(){
  var hint=t3El('t13ContactProfile');if(!hint)return;var problem=turismoPrimaryContactProblem(),contacts=turismoFormContacts(),ids=problem?new Set():turismoMatchingClients(contacts.slice(0,1));hint.hidden=ids.size!==1;
- if(ids.size===1){var list=turismoKnownClientRecords(Array.from(ids)[0]),button=t3El('t13ContactProfileButton');button.dataset.recordId=list[0].id;button.textContent='Ver perfil de '+displayClient(list[0])}
+ if(ids.size===1){var list=turismoKnownClientRecords(Array.from(ids)[0]),button=t3El('t13ContactProfileButton');button.dataset.recordId=list[0].id;button.textContent='Ver ficha de '+displayClient(list[0])}
 }
 function turismoUpdateContactFields(){TurismoAlpha12.contactFields();var label=t3El('fContactLabel');if(label)label.textContent+=' *';turismoContactProfileHint()}
 function clientSuggestionMatches(kind,query){
@@ -5611,5 +5624,372 @@ function renderClientSuggestions(kind){
 function turismoStart(){TurismoAlpha12.start();turismoUpdateContactFields();turismoFormValidation(true);t3El('fTelefono').addEventListener('input',function(){turismoFormValidation(true);renderClientSuggestions('phone')});t3El('fPhonePrefix1').addEventListener('change',function(){turismoFormValidation(true);turismoContactProfileHint()})}
 
 </script>
-</body>
+<div id="t14Notice" class="t14Notice" role="status" aria-live="polite" hidden><span id="t14NoticeIcon" aria-hidden="true">✓</span><div><strong id="t14NoticeTitle"></strong><p id="t14NoticeText"></p></div><button type="button" aria-label="Cerrar aviso" onclick="turismoHideNotice()">×</button></div>
+<dialog id="t14Decision" class="t14Decision" aria-labelledby="t14DecisionTitle" aria-describedby="t14DecisionText">
+ <header><span class="t14Eyebrow">Turismo</span><h2 id="t14DecisionTitle"></h2></header>
+ <div class="t14DecisionBody"><p id="t14DecisionText"></p><label id="t14PromptWrap" hidden><span id="t14PromptLabel">Comentario</span><textarea id="t14PromptText" rows="6"></textarea></label><p id="t14PromptError" class="t14PromptError" hidden>El comentario no puede quedar vacío.</p></div>
+ <footer><button id="t14DecisionCancel" type="button" class="btn" onclick="turismoFinishDecision(false)">Cancelar</button><button id="t14DecisionAccept" type="button" class="btn btn-primary" onclick="turismoFinishDecision(true)">Continuar</button></footer>
+</dialog>
+
+<script>var TurismoAlpha13={start:turismoStart,navigate:turismoNavigate,back:turismoHandleBack,save:saveRecord,clear:clearForm,saveTrip:saveTripAdmin,clearTrip:clearTripAdminForm,loadTrip:loadTripAdmin,tripCards:renderTripSummary,clientProfile:turismoOpenClientProfile,editRule:turismoEditRule,ruleFromForm:turismoRuleFromForm,profileSave:turismoSaveProfile,persistData:persistData,persistTrips:persistTrips,showMessage:turismoShowMessage,closeMessage:turismoCloseMessage,saveMessage:saveAdminMessage};</script>
+<script>
+/* Alpha 15: contextual editors and nonblocking onboarding. Data schemas remain compatible. */
+var turismoDecisionQueue=[],turismoDecisionCurrent=null,turismoNoticeTimer=null,turismoDuplicateToken='',turismoTripEditorReturn='tripSummaryPanel',turismoDataWrites=0,turismoTripWrites=0,turismoSuppressTripSaved=false;
+function turismoNotice(text,kind,title){
+ var box=t3El('t14Notice');if(!box)return;
+ text=String(text||'');kind=kind||(/guardad|importad|eliminad|copiad/i.test(text)&&!/^No |error|no se /i.test(text)?'success':/^No |no se |no pudo|inválid|negativ/i.test(text)?'error':'info');
+ clearTimeout(turismoNoticeTimer);box.dataset.kind=kind;t3El('t14NoticeTitle').textContent=title||(kind==='success'?'Listo':kind==='error'?'Revisá estos datos':'Turismo');t3El('t14NoticeText').textContent=text;t3El('t14NoticeIcon').textContent=kind==='success'?'✓':kind==='error'?'!':'i';box.hidden=false;
+ if(kind==='success')turismoNoticeTimer=setTimeout(turismoHideNotice,6500);
+}
+function turismoHideNotice(){var box=t3El('t14Notice');if(box)box.hidden=true;clearTimeout(turismoNoticeTimer)}
+function alert(message){if(turismoSuppressTripSaved&&String(message)==='Viaje guardado con sus tarifas y condiciones.')return;turismoNotice(message)}
+function turismoConfirm(options){return new Promise(function(resolve){turismoDecisionQueue.push({options:options,resolve:resolve,focus:document.activeElement});turismoNextDecision()})}
+function turismoNextDecision(){
+ if(turismoDecisionCurrent||!turismoDecisionQueue.length)return;
+ turismoDecisionCurrent=turismoDecisionQueue.shift();var opts=turismoDecisionCurrent.options,dialog=t3El('t14Decision');
+ turismoHideNotice();t3El('t14DecisionTitle').textContent=opts.title||'Confirmar';t3El('t14DecisionText').textContent=opts.text||'';
+ t3El('t14DecisionAccept').textContent=opts.accept||'Continuar';t3El('t14DecisionAccept').classList.toggle('btn-danger',!!opts.danger);
+ t3El('t14PromptWrap').hidden=!opts.prompt;t3El('t14PromptError').hidden=true;t3El('t14PromptText').value=opts.value||'';t3El('t14PromptText').readOnly=!!opts.copy;t3El('t14PromptLabel').textContent=opts.copy?'Texto para copiar':'Comentario';
+ dialog.showModal();t3El('t14DecisionCancel').focus({preventScroll:true});
+ if(opts.copy){t3El('t14PromptText').focus({preventScroll:true});t3El('t14PromptText').select()}
+}
+function turismoFinishDecision(accepted){
+ var task=turismoDecisionCurrent;if(!task)return;
+ var value=task.options.prompt?(task.options.copy?t3El('t14PromptText').value:t3El('t14PromptText').value.trim()):true;
+ if(accepted&&task.options.prompt&&!value){t3El('t14PromptError').hidden=false;t3El('t14PromptText').focus();return}
+ t3El('t14Decision').close();turismoDecisionCurrent=null;
+ if(task.focus&&task.focus.isConnected)task.focus.focus({preventScroll:true});task.resolve(accepted?value:false);turismoNextDecision();
+}
+function persistData(){var ok=TurismoAlpha13.persistData();if(ok)turismoDataWrites++;return ok}
+function persistTrips(show){var ok=TurismoAlpha13.persistTrips(show);if(ok)turismoTripWrites++;return ok}
+async function myaCopyText(text){
+ text=String(text||'');try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(text);turismoNotice('El texto quedó copiado.','success');return}}catch(error){}
+ await turismoConfirm({title:'Copiar mensaje',text:'El navegador no permitió copiar automáticamente. El texto está seleccionado; usá la opción Copiar de tu dispositivo.',prompt:true,copy:true,value:text,accept:'Listo'});
+}
+function turismoApproveDuplicate(client,trip,departure){
+ var token=JSON.stringify([client,trip,departure]);if(turismoDuplicateToken===token)return true;
+ turismoConfirm({title:'Este cliente ya tiene una gestión',text:'Ya hay una gestión de este viaje y fecha. Podés crear otra independiente, con sus propios pagos y seguimiento.',accept:'Crear otra gestión'}).then(function(ok){if(!ok)return;turismoDuplicateToken=token;try{saveRecord()}finally{turismoDuplicateToken=''}});return false;
+}
+function saveRecord(){
+ if(!selectedTrip()){turismoUpdateTripGate();if(!TRIPS.length){turismoNotice('Creá el primer viaje para guardar su seguimiento.');return}}
+ var before=turismoDataWrites,wasEditing=!!editingId;TurismoAlpha13.save();
+ if(turismoDataWrites>before){if(document.activeElement&&document.activeElement.blur)document.activeElement.blur();turismoNotice(wasEditing?'Los cambios del seguimiento quedaron guardados.':'El seguimiento quedó guardado. Los campos están libres para otra consulta.','success',wasEditing?'Seguimiento actualizado':'Seguimiento creado')}
+}
+function turismoUpdateTripGate(){
+ var noTrips=!TRIPS.length;t3El('t14TripGate').hidden=!noTrips;document.body.classList.toggle('t14NoTrips',noTrips);
+ var save=t3El('followupFormPanel').querySelector('button[onclick="saveRecord()"]');if(save)save.disabled=noTrips;
+}
+function clearForm(){TurismoAlpha13.clear();turismoUpdateTripGate()}
+function turismoTripEditorChrome(){
+ var trip=getTripById(t3Value('adminTripId')),editing=!!trip;
+ t3El('t14TripEditorTitle').textContent=editing?'Editar viaje':'Crear viaje';turismoPages.tripAdminPanel[1]=editing?'Editar viaje':'Crear viaje';
+ t3El('t14ArchiveTrip').hidden=!editing;t3El('t14DeleteTrip').hidden=!editing;t3El('t14TripDeleteHint').hidden=!editing;
+ t3El('t14ArchiveTrip').textContent=editing&&isTripActive(trip)?'Archivar viaje':'Desarchivar viaje';t3El('t14LegacyConditions').hidden=!t3Value('adminTripConditions');
+ var back=t3El('tripAdminPanel').querySelector('.t14Back');if(back)back.textContent=turismoTripEditorReturn==='followupFormPanel'?'← Volver al seguimiento':'← Volver a viajes';
+ turismoUpdateScreenTitle();
+}
+function clearTripAdminForm(){t3El('adminTripSelect').value='';TurismoAlpha13.clearTrip();t3El('t14RuleDescription').value='';turismoTripEditorChrome()}
+function loadTripAdmin(id){TurismoAlpha13.loadTrip(id);t3El('adminTripSelect').value=id||'';t3El('t14RuleDescription').value='';turismoTripEditorChrome()}
+function turismoCreateTrip(returnTo){turismoTripEditorReturn=returnTo||'tripSummaryPanel';clearTripAdminForm();turismoNavigate('tripAdminPanel')}
+function turismoEditTrip(id){turismoTripEditorReturn='tripSummaryPanel';turismoCloseTrip();loadTripAdmin(id);turismoNavigate('tripAdminPanel')}
+function turismoTripAdminView(){turismoEditTrip(turismoTripDialogId)}
+function turismoLeaveTripEditor(){turismoNavigate(turismoTripEditorReturn);turismoTripEditorReturn='tripSummaryPanel'}
+function saveTripAdmin(){
+ var before=turismoTripWrites,wasEditing=!!t3Value('adminTripId');turismoSuppressTripSaved=true;
+ try{TurismoAlpha13.saveTrip()}finally{turismoSuppressTripSaved=false}
+ if(turismoTripWrites===before)return;
+ var id=t3Value('adminTripId'),trip=getTripById(id),name=trip.name,returnTo=turismoTripEditorReturn;
+ if(!wasEditing){clearTripAdminForm();populateTripAdminSelect('');if(returnTo==='followupFormPanel'){turismoNavigate('followupFormPanel');t3El('fViaje').value=id;onTripChange();turismoTripEditorReturn='tripSummaryPanel'}}else turismoTripEditorChrome();
+ turismoUpdateTripGate();turismoBrowseMessageTrips();if(document.activeElement&&document.activeElement.blur)document.activeElement.blur();
+ turismoNotice(wasEditing?'Los cambios de “'+name+'” quedaron guardados.':returnTo==='followupFormPanel'?'“'+name+'” quedó creado y seleccionado para tu consulta.':'“'+name+'” quedó creado. Los campos están libres para otro viaje.','success',wasEditing?'Viaje actualizado':'Viaje creado');
+}
+function renderSpecialConditions(list){
+ window._myaSpecialConditions=list||[];t3El('t14RuleCombine').hidden=window._myaSpecialConditions.length<2;
+ t3El('specialConditionsList').innerHTML=window._myaSpecialConditions.map(function(rule,index){return '<div class="t3RuleItem"><div><strong>'+esc(turismoRuleText(rule))+'</strong>'+(rule.descripcion?'<p class="t14RuleDescription">'+esc(rule.descripcion)+'</p>':'')+(rule.accion==='gratis'?'<div class="t14RuleNote">Quienes viajan gratis no pagan seña.</div>':'')+'</div><div><button type="button" class="btn" onclick="turismoEditRule('+index+')">Editar</button><button type="button" class="btn" onclick="turismoDeleteRule('+index+')">Quitar</button></div></div>'}).join('')||'<p class="t3Guide">Agregá una condición si este viaje tiene un beneficio especial.</p>';
+}
+function turismoEditRule(index){TurismoAlpha13.editRule(index);var rule=(window._myaSpecialConditions||[])[index];t3El('t14RuleDescription').value=rule&&rule.descripcion||''}
+function turismoRuleFromForm(){var rule=TurismoAlpha13.ruleFromForm();rule.descripcion=t3Value('t14RuleDescription');return rule}
+function renderTripSummary(){
+ TurismoAlpha13.tripCards();t3El('t8TripCards').querySelectorAll('.t8TripCard').forEach(function(card){var button=card.querySelector('[data-trip-id]');if(!button)return;var id=button.dataset.tripId;button.textContent='Ver ficha';var actions=document.createElement('div');actions.className='t14TripActions';button.parentNode.appendChild(actions);actions.appendChild(button);var edit=document.createElement('button');edit.type='button';edit.className='btn';edit.textContent='Editar';edit.dataset.tripId=id;edit.setAttribute('onclick','turismoEditTrip(this.dataset.tripId)');actions.appendChild(edit)});turismoUpdateTripGate();
+}
+function turismoBrowseTripChanged(){t3El('t6MessageTrip').value=t3Value('t12BrowseTrip');turismoRenderBrowseMessages()}
+function turismoRenderBrowseMessages(){
+ var tripId=t3Value('t12BrowseTrip'),query=simpleText(t3Value('t12MessageSearch')),scope=t3Value('t12MessageScope'),list=[];
+ TRIPS.forEach(function(trip){if(tripId&&trip.id!==tripId||scope==='active'&&!isTripActive(trip)||scope==='archived'&&isTripActive(trip))return;getTripMessages(trip).forEach(function(message){if(!query||simpleText([trip.name,message.name,message.text].join(' ')).includes(query))list.push({trip:trip,message:message})})});
+ t3El('t12BrowseCards').innerHTML=list.map(function(item){var attrs=' data-message-id="'+esc(item.message.id)+'" data-message-trip="'+esc(item.trip.id)+'"';return '<article class="t6MessageCard"><span class="t12MessageTrip">'+esc(item.trip.name)+(isTripActive(item.trip)?'':' · Archivado')+'</span><h3>'+esc(item.message.name)+'</h3><p class="t7MessagePreview">'+esc(shorten(item.message.text||'Mensaje sin texto.',250))+'</p><div class="t12BrowseActions"><button type="button" class="btn"'+attrs+' onclick="turismoViewMessage(this.dataset.messageId,this.dataset.messageTrip)">Ver</button><button type="button" class="btn btn-primary"'+attrs+' onclick="turismoCopyLibraryMessage(this.dataset.messageId,this.dataset.messageTrip)">Copiar</button><button type="button" class="btn"'+attrs+' onclick="turismoEditMessage(this.dataset.messageId,this.dataset.messageTrip)">Editar</button></div></article>'}).join('')||'<p class="t3Empty">'+(TRIPS.length?'No hay mensajes para esta búsqueda. Elegí un viaje y creá su primer mensaje.':'Creá un viaje para agregar sus mensajes.')+'</p>';
+ t3El('t12MessageCount').textContent=turismoCountLabel(list.length,'mensaje disponible','mensajes disponibles');t3El('t14CreateMessage').disabled=!TRIPS.length;
+}
+function newAdminMessage(){
+ var id=t3Value('t12BrowseTrip');if(!getTripById(id)){turismoNotice('Elegí el viaje para el que querés crear el mensaje.');t3El('t12BrowseTrip').focus();return}turismoShowMessage('',id,'edit');
+}
+function turismoCloseMessage(force){
+ if(!force&&turismoMessageDirty()){turismoConfirm({title:'¿Salir sin guardar?',text:'Los cambios de este mensaje no se guardaron. Podés volver para seguir editando.',accept:'Descartar cambios',danger:true}).then(function(ok){if(ok)turismoCloseMessage(true)});return false}
+ return TurismoAlpha13.closeMessage(true);
+}
+function turismoShowMessage(id,tripId,mode){
+ if(turismoMessageDirty()){turismoConfirm({title:'¿Cambiar de mensaje?',text:'Se descartarán los cambios del mensaje que estás editando.',accept:'Descartar cambios',danger:true}).then(function(ok){if(ok){turismoCloseMessage(true);turismoShowMessage(id,tripId,mode)}});return}
+ TurismoAlpha13.showMessage(id,tripId,mode);
+ t3El('t14MessageDelete').hidden=mode!=='edit'||!id;
+}
+function saveAdminMessage(){var before=turismoTripWrites;TurismoAlpha13.saveMessage();if(turismoTripWrites>before)turismoNotice('El mensaje quedó guardado en su viaje.','success','Mensaje guardado')}
+async function turismoDeleteLibraryMessage(id,tripId){
+ var trip=getTripById(tripId||t3Value('t6MessageTrip')),message=getTripMessageById(trip,id);if(!message)return false;
+ if(!await turismoConfirm({title:'¿Eliminar este mensaje?',text:'Se eliminará “'+message.name+'” de '+trip.name+'. Esta acción no se puede deshacer.',accept:'Eliminar mensaje',danger:true}))return false;
+ var before=t3Copy(TRIPS);trip=getTripById(trip.id);if(!trip||!getTripMessageById(trip,id))return false;
+ trip.messages=getTripMessages(trip).filter(function(m){return m.id!==id});if(id==='info')trip.messageInfo='';if(id==='reserva')trip.messageReserva='';
+ if(!persistTrips(true)){TRIPS=before;return false}
+ if(turismoMessageSession&&turismoMessageSession.tripId===trip.id&&turismoMessageSession.messageId===id)turismoCloseMessage(true);
+ populateMessageControls();turismoRenderMessageLibrary();turismoNotice('Se eliminó el mensaje de '+trip.name+'.','success','Mensaje eliminado');return true;
+}
+async function deleteRecord(id){
+ var record=findRecord(id);if(!record)return;
+ if(!await turismoConfirm({title:'¿Eliminar este seguimiento?',text:displayClient(record)+' · '+record.viaje+'\nSe eliminará esta gestión y sus comentarios. Las otras gestiones del cliente se conservan.',accept:'Eliminar seguimiento',danger:true}))return;
+ var before=t3Copy(records);records=records.filter(function(r){return r.id!==id});if(!persistData()){records=before;return}
+ if(editingId===id)clearForm();turismoCloseRecord();turismoCloseClientProfile(false);renderAll();turismoNotice('El seguimiento fue eliminado.','success');
+}
+async function toggleTripArchiveAdmin(){
+ var id=t3Value('adminTripId'),trip=getTripById(id);if(!trip){alert('Elegí primero un viaje guardado.');return}
+ var active=isTripActive(trip),expired=trip.endDate&&trip.endDate<todayISO();
+ if(!await turismoConfirm({title:active?'¿Archivar este viaje?':'¿Desarchivar este viaje?',text:active?'“'+trip.name+'” dejará de aparecer como activo. Se conservan sus gestiones, pagos y mensajes.':expired?'La fecha final de “'+trip.name+'” ya pasó. Para volver a activarlo se dejará vacía; después podés cargar una nueva fecha.':'“'+trip.name+'” volverá a estar activo.',accept:active?'Archivar viaje':'Desarchivar viaje'}))return;
+ var before=t3Copy(TRIPS);trip=getTripById(id);trip.enabled=!active;if(!active&&expired)trip.endDate='';
+ if(!persistTrips(true)){TRIPS=before;return}populateTripControls();populateMessageControls();populateTripAdminSelect(id);loadTripAdmin(id);renderAll();turismoNotice(active?'El viaje quedó archivado. Su historial se conserva.':'El viaje volvió a estar activo.','success');
+}
+async function deleteTripAdmin(){
+ var id=t3Value('adminTripId'),trip=getTripById(id);if(!trip){alert('Elegí el viaje que querés eliminar.');return}
+ var count=tripRecordCount(id);if(count){turismoNotice('“'+trip.name+'” tiene '+count+' gestión(es). Archivá el viaje para conservar su historial.','info','Este viaje tiene historial');return}
+ if(!await turismoConfirm({title:'¿Eliminar este viaje?',text:'Se eliminarán “'+trip.name+'” y sus mensajes guardados. No tiene gestiones vinculadas. Esta acción no se puede deshacer.',accept:'Eliminar viaje',danger:true}))return;
+ if(tripRecordCount(id)){turismoNotice('El viaje ahora tiene gestiones vinculadas. Archivá el viaje para conservarlas.');return}
+ var before=t3Copy(TRIPS);TRIPS=TRIPS.filter(function(t){return t.id!==id});if(!persistTrips(true)){TRIPS=before;return}
+ clearTripAdminForm();populateTripControls();populateMessageControls();populateTripAdminSelect('');renderAll();turismoNotice('El viaje y sus mensajes fueron eliminados.','success');
+}
+async function editFormComment(id){
+ var comment=formComments.find(function(c){return c.id===id});if(!comment)return;
+ var value=await turismoConfirm({title:'Editar comentario',text:'Se conserva la fecha original. Guardá el seguimiento para conservar la modificación.',prompt:true,value:comment.texto||'',accept:'Aplicar cambio'});if(value===false)return;
+ comment.texto=value;comment.editado=nowText();renderFormComments();setStatus('Comentario modificado. Guardá el seguimiento para conservarlo.');
+}
+function turismoOpenClientProfile(id){
+ TurismoAlpha13.clientProfile(id);var list=turismoClientRecords(id);if(!list.length)return;
+ var contacts=turismoRecordContacts(list[0]);t3El('t14ClientHeaderContacts').innerHTML=contacts.map(function(c){var url=turismoChannelURL(c),content=turismoChannelIcon(c.canal)+'<span>'+esc(c.valor)+'</span>';return url?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(c.canal+' · '+c.valor)+'">'+content+'</a>':'<span>'+content+'</span>'}).join('');
+ var section=t3El('t12ClientBody').querySelector('.t5DetailSection');if(section&&section.querySelector('.t12ClientContacts'))section.remove();
+ t3El('t12ClientSubtitle').textContent=turismoCountLabel(list.length,'gestión registrada','gestiones registradas')+' · Historial del cliente';
+}
+function turismoSetupAccess(open){
+ document.body.classList.toggle('t14SetupOpen',open);Array.from(document.body.children).forEach(function(el){if(el.id!=='turismoSetup'&&el.id!=='t14Notice'&&el.tagName!=='SCRIPT'&&el.tagName!=='STYLE')el.inert=open});
+ if(open)t3El('t14WelcomeTitle').focus({preventScroll:true});
+}
+function turismoSaveProfile(event){TurismoAlpha13.profileSave(event);if(!t3El('turismoSetup').classList.contains('open')){turismoSetupAccess(false);turismoNotice('Tu espacio de trabajo está listo. Creá un viaje para empezar.','success','Bienvenido a Turismo')}}
+function turismoNavigate(target){
+ if(turismoMessageDirty()){turismoConfirm({title:'¿Salir sin guardar?',text:'Se descartarán los cambios de este mensaje.',accept:'Descartar cambios',danger:true}).then(function(ok){if(ok){turismoCloseMessage(true);turismoNavigate(target)}});return}
+ if(target==='messageAdminPanel')target='messagePanel';TurismoAlpha13.navigate(target);
+ if(target==='followupFormPanel')turismoUpdateTripGate();if(target==='tripAdminPanel'){turismoTripEditorChrome();turismoCloseClientProfile(false)}
+ document.querySelectorAll('[data-target="tripSummaryPanel"],[data-app-target="tripSummaryPanel"]').forEach(function(b){var active=document.body.dataset.page==='trips'||document.body.dataset.page==='tripadmin';b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+}
+function turismoHandleBack(){if(t3El('t14Decision').open){turismoFinishDecision(false);return true}if(t3El('turismoSetup').classList.contains('open'))return true;if(document.body.dataset.page==='tripadmin'){turismoLeaveTripEditor();return true}return TurismoAlpha13.back()}
+function turismoShowBackups(){var heading=t3El('t14Backups');if(heading)heading.scrollIntoView({behavior:'smooth',block:'start'})}
+function turismoStart(){
+ var profile=turismoGetProfile();if(!profile)t3El('turismoSetup').classList.add('open');TurismoAlpha13.start();turismoSetupAccess(!profile);
+ turismoUpdateTripGate();turismoTripEditorChrome();var dialog=t3El('t14Decision');dialog.addEventListener('cancel',function(e){e.preventDefault();turismoFinishDecision(false)});
+}
+
+</script>
+<dialog id="t15LifecycleDialog" class="t8Dialog" aria-labelledby="t15LifecycleTitle">
+ <header class="t8DialogHead"><div><span>Estado del viaje</span><h2 id="t15LifecycleTitle"></h2><p id="t15LifecycleTrip"></p></div><button type="button" class="t5IconButton" aria-label="Cerrar cambio de estado" onclick="turismoCloseLifecycle()">×</button></header>
+ <div class="t8DialogBody"><p id="t15LifecycleIntro" class="t15StatusNote"></p><div class="t15LifecycleFields">
+  <div id="t15PostponeFields" hidden><label class="t15Pending"><input type="checkbox" id="t15DatesPending" checked onchange="turismoLifecycleDatesChanged()"> Todavía no hay nuevas fechas</label><label>Fecha visible<input type="text" id="t15DateText" placeholder="Ej.: 14 y 15 de noviembre de 2026"></label><label>Fecha de salida<input type="date" id="t15StartDate"></label><label>Fecha final<input type="date" id="t15EndDate"></label></div>
+  <label>Motivo o nota (opcional)<textarea id="t15Reason" maxlength="1000" placeholder="Ej.: Reprogramación por clima."></textarea></label><p id="t15LifecycleError" class="t15Error" role="alert" hidden></p>
+ </div></div><footer class="t8DialogFooter"><button type="button" class="btn" onclick="turismoCloseLifecycle()">Cancelar</button><button type="button" class="btn btn-primary" id="t15LifecycleSave" onclick="turismoSaveLifecycle()">Guardar cambio</button></footer>
+</dialog>
+<script>var TurismoAlpha14={start:turismoStart,navigate:turismoNavigate,back:turismoHandleBack,filtered:getCurrentFilteredRecords,filterTrips:populateFilterTripControl,table:renderTable,caseCard:turismoCaseCard,clientProfile:turismoOpenClientProfile,tripDetail:turismoRenderTripDetail,openRecord:turismoOpenRecord,save:saveRecord,saveTrip:saveTripAdmin,editor:turismoTripEditorChrome,reset:resetFilters};</script><script>/* El catálogo conserva la identidad y la historia de los viajes retirados.
+   Cambiar el estado nunca modifica las gestiones ni los pagos del cliente. */
+var turismoLifecycleSession=null,turismoHistoricTripId='';
+function turismoTripState(trip){
+ if(!trip)return 'desconocido';
+ if(['eliminado','suspendido','pospuesto'].includes(trip.situacion))return trip.situacion;
+ if(trip.situacion==='archivado'||trip.enabled===false)return 'archivado';
+ var end=turismoDateISO(trip.endDate);return end&&end<todayISO()?'archivado':'activo';
+}
+function turismoTripStateLabel(trip){return {activo:'Activo',archivado:'Archivado',eliminado:'Eliminado · Historial conservado',suspendido:'Suspendido',pospuesto:'Pospuesto',desconocido:'Sin viaje asociado'}[turismoTripState(trip)]}
+function turismoVisibleTrips(){return TRIPS.filter(function(trip){return turismoTripState(trip)!=='eliminado'})}
+function isTripActive(trip){return turismoTripState(trip)==='activo'}
+function archivedTrips(){return TRIPS.filter(function(trip){return turismoTripState(trip)==='archivado'})}
+function turismoInactiveTrips(){return turismoVisibleTrips().filter(function(trip){return !isTripActive(trip)})}
+function turismoLifecycleSnapshot(trip){return {dateText:trip.dateText||'',startDate:trip.startDate||'',endDate:trip.endDate||''}}
+function turismoLifecycleCommit(id,state,details){
+ var trip=getTripById(id);if(!trip||turismoTripState(trip)==='eliminado')return false;
+ var before=t3Copy(TRIPS),from=turismoTripState(trip),oldDates=turismoLifecycleSnapshot(trip);details=details||{};
+ trip.situacion=state;trip.enabled=state==='activo';trip.situacionActualizada=nowText();trip.motivoSituacion=String(details.reason||'').trim();
+ if(details.dates){trip.dateText=details.dates.dateText;trip.startDate=details.dates.startDate;trip.endDate=details.dates.endDate;trip.reprogramacionPendiente=!!details.pending}
+ if(state==='activo')trip.reprogramacionPendiente=false;
+ if(!Array.isArray(trip.historialEstados))trip.historialEstados=[];
+ trip.historialEstados.push({id:newId(),fecha:nowText(),desde:from,hasta:state,motivo:trip.motivoSituacion,fechasAnteriores:oldDates,fechasActuales:turismoLifecycleSnapshot(trip),pendiente:!!trip.reprogramacionPendiente});
+ if(!persistTrips(true)){TRIPS=before;return false}return true;
+}
+function turismoRefreshLifecycle(id,removed){
+ if(removed){turismoHistoricTripId='';turismoDashboardFilter=null;clearForm();clearTripAdminForm()}
+ populateTripControls();populateMessageControls();populateTripAdminSelect(removed?'':id);renderAll();
+ if(id&&!removed)loadTripAdmin(id);turismoUpdateTripGate();
+ if(removed)turismoNavigate('tripSummaryPanel');
+}
+async function deleteTripAdmin(){
+ var id=t3Value('adminTripId'),trip=getTripById(id);if(!trip||turismoTripState(trip)==='eliminado')return;
+ var state=turismoTripState(trip),count=tripRecordCount(id);
+ if(!await turismoConfirm({title:'¿Eliminar este viaje del catálogo?',text:'“'+trip.name+'” dejará de aparecer en Viajes, Mensajes y el seguimiento diario.\n'+turismoCountLabel(count,'gestión vinculada se conserva','gestiones vinculadas se conservan')+' en la ficha de cada cliente, con sus contactos, pagos, señas y comentarios.',accept:'Eliminar viaje',danger:true}))return;
+ if(turismoTripState(getTripById(id))!==state){turismoNotice('El estado del viaje cambió. Revisalo antes de continuar.');return}
+ if(!turismoLifecycleCommit(id,'eliminado'))return;turismoRefreshLifecycle(id,true);turismoNotice('El viaje fue eliminado del catálogo. Sus clientes e historial siguen disponibles en Clientes.','success','Viaje eliminado');
+}
+async function toggleTripArchiveAdmin(){
+ var id=t3Value('adminTripId'),trip=getTripById(id);if(!trip||turismoTripState(trip)==='eliminado')return;
+ if(turismoTripState(trip)==='archivado'){await turismoActivateTrip();return}
+ var state=turismoTripState(trip);
+ if(!await turismoConfirm({title:'¿Archivar este viaje?',text:'“'+trip.name+'” quedará en Archivados y saldrá del seguimiento diario. Clientes, gestiones, mensajes, pagos y señas se conservan.',accept:'Archivar viaje'}))return;
+ if(turismoTripState(getTripById(id))!==state)return;
+ if(turismoLifecycleCommit(id,'archivado')){turismoRefreshLifecycle(id,false);turismoNotice('El viaje quedó en Archivados. Se conserva todo su historial.','success')}
+}
+async function turismoActivateTrip(){
+ var id=t3Value('adminTripId'),trip=getTripById(id),state=turismoTripState(trip);if(!trip||['eliminado','activo'].includes(state))return;
+ var start=turismoDateISO(trip.startDate),end=turismoDateISO(trip.endDate);
+ if(trip.reprogramacionPendiente||end&&end<todayISO()||start&&end&&start>end){turismoNotice('Antes de reactivar el viaje, guardá sus nuevas fechas.','info','Revisá las fechas');turismoOpenLifecycle('pospuesto');return}
+ if(!await turismoConfirm({title:'¿Reactivar este viaje?',text:'“'+trip.name+'” volverá a Activos. Sus gestiones abiertas volverán al seguimiento según su regla guardada. Los precios y pagos se conservan.',accept:'Reactivar viaje'}))return;
+ if(turismoTripState(getTripById(id))!==state)return;
+ if(turismoLifecycleCommit(id,'activo')){turismoRefreshLifecycle(id,false);turismoNotice('El viaje volvió a Activos. Se conservan sus gestiones y pagos.','success')}
+}
+function turismoOpenLifecycle(mode){
+ var trip=getTripById(t3Value('adminTripId'));if(!trip||turismoTripState(trip)==='eliminado'||!['suspendido','pospuesto'].includes(mode))return;
+ turismoLifecycleSession={id:trip.id,mode:mode,state:turismoTripState(trip),focus:document.activeElement};
+ t3El('t15LifecycleTitle').textContent=mode==='pospuesto'?'Posponer viaje':'Suspender viaje';t3El('t15LifecycleTrip').textContent=trip.name;
+ t3El('t15LifecycleIntro').textContent=mode==='pospuesto'?'Elegí nuevas fechas o dejá la reprogramación pendiente. El viaje estará fuera de Activos hasta que lo reactives. Las gestiones conservan sus fechas, precios, pagos y señas registrados.':'El viaje quedará fuera de Activos y del seguimiento diario. Podés reactivarlo después. Sus gestiones, pagos y señas se conservan.';
+ t3El('t15PostponeFields').hidden=mode!=='pospuesto';t3El('t15DatesPending').checked=true;
+ ['t15DateText','t15StartDate','t15EndDate','t15Reason'].forEach(function(id){t3El(id).value=''});
+ t3El('t15LifecycleError').hidden=true;t3El('t15LifecycleSave').textContent=mode==='pospuesto'?'Guardar postergación':'Suspender viaje';turismoLifecycleDatesChanged();
+ t3El('t15LifecycleDialog').showModal();document.body.classList.add('t8DialogOpen');t3El('t15LifecycleTitle').setAttribute('tabindex','-1');t3El('t15LifecycleTitle').focus({preventScroll:true});
+}
+function turismoLifecycleDatesChanged(){var disabled=t3El('t15DatesPending').checked;['t15DateText','t15StartDate','t15EndDate'].forEach(function(id){t3El(id).disabled=disabled})}
+function turismoCloseLifecycle(){var session=turismoLifecycleSession,dialog=t3El('t15LifecycleDialog');if(dialog.open)dialog.close();turismoLifecycleSession=null;document.body.classList.remove('t8DialogOpen');if(session&&session.focus&&session.focus.isConnected)session.focus.focus({preventScroll:true})}
+function turismoSaveLifecycle(){
+ var session=turismoLifecycleSession;if(!session)return;var trip=getTripById(session.id),error='';if(!trip||turismoTripState(trip)!==session.state){error='El estado del viaje cambió. Cerrá esta ventana y revisalo.'}
+ var details={reason:t3Value('t15Reason')};
+ if(session.mode==='pospuesto'){
+  var pending=t3El('t15DatesPending').checked,start=pending?'':turismoDateISO(t3Value('t15StartDate')),end=pending?'':turismoDateISO(t3Value('t15EndDate'));
+  if(!pending&&!start)error='Indicá la nueva fecha de salida o marcá que todavía no hay nuevas fechas.';
+  if(!pending&&t3Value('t15EndDate')&&!end)error='Indicá una fecha final válida.';
+  if(start&&start<todayISO())error='La nueva salida debe ser hoy o una fecha posterior.';
+  if(start&&end&&start>end)error='La salida debe ser anterior o igual a la fecha final.';
+  details.pending=pending;details.dates={dateText:pending?'':t3Value('t15DateText')||(start?turismoFullDate(new Date(start+'T12:00:00')):''),startDate:start,endDate:end};
+ }
+ if(error){t3El('t15LifecycleError').textContent=error;t3El('t15LifecycleError').hidden=false;return}
+ if(!turismoLifecycleCommit(session.id,session.mode,details)){t3El('t15LifecycleError').textContent='No se pudo guardar el cambio. Tus datos y este borrador se conservan.';t3El('t15LifecycleError').hidden=false;return}
+ turismoCloseLifecycle();turismoRefreshLifecycle(session.id,false);turismoNotice(session.mode==='pospuesto'?'El viaje quedó pospuesto. Reactivalo cuando estén confirmadas las fechas.':'El viaje quedó suspendido. Sus gestiones y pagos se conservan.','success');
+}
+function turismoTripEditorChrome(){
+ TurismoAlpha14.editor();var trip=getTripById(t3Value('adminTripId')),state=turismoTripState(trip),saved=!!trip;
+ t3El('t15EditorState').innerHTML=(saved?esc(turismoTripStateLabel(trip)):'Nuevo viaje')+'<small>'+(state==='pospuesto'&&trip.reprogramacionPendiente?'Pendiente de reprogramación':saved&&!isTripActive(trip)?'Sus gestiones están fuera de la revisión diaria.':'Disponible para nuevas consultas.')+'</small>';
+ t3El('t15LifecycleActions').hidden=!saved||state==='eliminado';t3El('t15SuspendTrip').hidden=state==='suspendido';t3El('t15ActivateTrip').hidden=!saved||state==='activo';
+ t3El('t14ArchiveTrip').hidden=!saved||['archivado','eliminado'].includes(state);t3El('t14DeleteTrip').hidden=!saved||state==='eliminado';
+ if(saved)t3El('adminTripEnabled').checked=trip.enabled!==false;
+}
+function populateTripAdminSelect(preferred){
+ var select=t3El('adminTripSelect'),current=preferred===undefined?select.value:preferred;clearSelect(select);addOption(select,'','Nuevo viaje…');
+ turismoVisibleTrips().forEach(function(trip){addOption(select,trip.id,trip.name+' · '+turismoTripStateLabel(trip))});
+ var trip=getTripById(current);if(trip&&turismoTripState(trip)!=='eliminado'){select.value=current;loadTripAdmin(current)}else clearTripAdminForm();
+}
+function saveTripAdmin(){var trip=getTripById(t3Value('adminTripId'));if(trip&&turismoTripState(trip)==='eliminado'){turismoNotice('Este viaje forma parte del historial del cliente. Para trabajar con un nuevo viaje, crealo en Viajes.');return}TurismoAlpha14.saveTrip()}
+function turismoUpdateTripGate(){
+ var none=!activeTrips().length&&!editingId,visible=turismoVisibleTrips().length;t3El('t14TripGate').hidden=!none;document.body.classList.toggle('t14NoTrips',none);
+ t3El('t14TripGate').querySelector('h2').textContent=visible?'No hay viajes activos':'Creá tu primer viaje';
+ t3El('t14TripGate').querySelector('p').textContent=visible?'Reactivá un viaje en Viajes o creá uno nuevo para registrar consultas.':'Las consultas se vinculan a un viaje. Agregá el primero para poder guardar un seguimiento.';
+ t3El('t14TripGate').querySelector('button').textContent=visible?'+ Crear viaje':'+ Crear primer viaje';
+ var save=t3El('followupFormPanel').querySelector('button[onclick="saveRecord()"]');if(save)save.disabled=none;
+}
+function saveRecord(){var trip=selectedTrip();if(!editingId&&trip&&!isTripActive(trip)){turismoNotice('Elegí un viaje activo para registrar una nueva consulta.');return}TurismoAlpha14.save()}
+function turismoSetTripScope(scope){if(!['all','active','archived','suspended','postponed'].includes(scope))return;turismoTripScope=scope;renderTripSummary()}
+function renderTripSummary(){
+ var box=t3El('t8TripCards');if(!box)return;var query=simpleText(t3Value('t8TripSearch')),visible=turismoVisibleTrips(),states={active:'activo',archived:'archivado',suspended:'suspendido',postponed:'pospuesto'};
+ var list=visible.filter(function(trip){return (turismoTripScope==='all'||turismoTripState(trip)===states[turismoTripScope])&&(!query||simpleText(trip.name+' '+turismoTripDateLabel(trip)).includes(query))}).sort(function(a,b){return Number(isTripActive(b))-Number(isTripActive(a))||String(a.startDate||'9999').localeCompare(String(b.startDate||'9999'))||a.name.localeCompare(b.name,'es')});
+ document.querySelectorAll('[data-trip-scope]').forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.tripScope===turismoTripScope))});
+ t3El('t8TripCount').textContent=turismoCountLabel(list.length,'viaje','viajes')+(turismoTripScope==='all'?' · '+activeTrips().length+' activos':'');
+ box.innerHTML=list.map(function(trip){var state=turismoTripState(trip),stats=turismoTripStatistics(trip),id=esc(trip.id),date=state==='pospuesto'&&trip.reprogramacionPendiente?'Fecha a confirmar':turismoTripDateLabel(trip);return '<article class="t8TripCard"><div class="t8TripCardTop"><h3>'+esc(trip.name)+'</h3><span class="t8TripBadge '+state+'">'+esc(turismoTripStateLabel(trip))+'</span></div><p class="t8TripDate">'+esc(date)+'</p><p>'+esc(turismoTripPriceLabel(trip))+'</p><p>'+turismoCountLabel(stats.total,'gestión','gestiones')+' · '+stats.confirmedPassengers+' pasajeros confirmados</p>'+(!isTripActive(trip)?'<p class="t15Quiet">Historial y pagos conservados</p>':'')+'<div class="t14TripActions"><button type="button" class="btn" data-trip-id="'+id+'" onclick="turismoOpenTrip(this.dataset.tripId)">Ver ficha</button><button type="button" class="btn" data-trip-id="'+id+'" onclick="turismoEditTrip(this.dataset.tripId)">Editar</button></div></article>'}).join('')||'<p class="t8Empty">No hay viajes en esta categoría.</p>';
+ t3El('t8ArchiveHint').hidden=turismoTripScope!=='archived';turismoUpdateTripGate();
+}
+function turismoLifecycleNote(trip){
+ if(!trip||isTripActive(trip))return '';var state=turismoTripState(trip),texts={eliminado:'Retirado del catálogo. Esta gestión se conserva como parte del historial del cliente.',archivado:'Historial archivado. Esta gestión está fuera de la revisión diaria.',suspendido:'Viaje suspendido. El seguimiento diario está detenido.',pospuesto:trip.reprogramacionPendiente?'Viaje pospuesto, pendiente de nuevas fechas. El seguimiento diario está detenido.':'Viaje pospuesto con nuevas fechas. El seguimiento diario queda detenido hasta reactivarlo.'};
+ return '<div class="t15StatusNote"><strong>'+esc(turismoTripStateLabel(trip))+'</strong><p>'+esc(texts[state])+'</p>'+(trip.motivoSituacion?'<p>'+esc(trip.motivoSituacion)+'</p>':'')+'<p>Los pagos y las señas registrados se conservan.</p></div>';
+}
+function turismoLifecycleEvents(trip){
+ var events=Array.isArray(trip.historialEstados)?trip.historialEstados:[];if(!events.length)return '';
+ return '<section class="t8DetailSection"><h3>Historial del viaje</h3><ul class="t15Events">'+events.slice().reverse().map(function(event){var old=event.fechasAnteriores||{},current=event.fechasActuales||{},changed=JSON.stringify(old)!==JSON.stringify(current);return '<li><strong>'+esc({activo:'Reactivado',eliminado:'Eliminado del catálogo',archivado:'Archivado',suspendido:'Suspendido',pospuesto:'Pospuesto'}[event.hasta]||event.hasta)+'</strong><small>'+esc(event.fecha)+'</small>'+(event.motivo?'<p>'+esc(event.motivo)+'</p>':'')+(changed?'<p>Fecha anterior: '+esc(old.dateText||old.startDate||'Sin indicar')+'</p><p>Salida anterior: '+esc(old.startDate?formatDate(old.startDate):'Sin indicar')+'</p><p>Nueva fecha: '+esc(event.pendiente?'A confirmar':current.dateText||current.startDate||'Sin indicar')+'</p><p>Nueva salida: '+esc(current.startDate?formatDate(current.startDate):'A confirmar')+'</p>':'')+'</li>'}).join('')+'</ul></section>';
+}
+function turismoRenderTripDetail(){
+ TurismoAlpha14.tripDetail();var trip=getTripById(turismoTripDialogId);if(!trip)return;var state=turismoTripState(trip);
+ t3El('t8TripStatus').textContent=turismoTripStateLabel(trip)+' · '+(trip.reprogramacionPendiente?'Fecha a confirmar':turismoTripDateLabel(trip));
+ t3El('t8TripBody').insertAdjacentHTML('afterbegin',turismoLifecycleNote(trip));t3El('t8TripBody').insertAdjacentHTML('beforeend',turismoLifecycleEvents(trip));
+ t3El('t15TripEdit').hidden=state==='eliminado';t3El('t15TripMessages').hidden=state==='eliminado';
+}
+function turismoRecordCurrentDates(record,trip){
+ if(!trip||isTripActive(trip)&&String(record.fechaViaje||'')===String(trip.dateText||'')&&String(record.fechaSalida||'')===String(trip.startDate||''))return '';
+ if(turismoTripState(trip)!=='pospuesto'&&!trip.historialEstados?.some(function(event){return event.hasta==='pospuesto'}))return '';
+ return '<p class="t3Guide">Programación actual: '+esc(trip.reprogramacionPendiente?'Fecha a confirmar':turismoTripDateLabel(trip))+' · Salida: '+esc(trip.startDate?formatDate(trip.startDate):'A confirmar')+'. Las fechas de esta gestión son las registradas al guardarla.</p>';
+}
+function turismoOpenClientProfile(id){
+ TurismoAlpha14.clientProfile(id);var list=turismoClientRecords(id);t3El('t12ClientBody').querySelectorAll('.t12ClientCase').forEach(function(card,index){var record=list[index],trip=getTripForRecord(record);if(!trip)return;
+  var badge=card.querySelector('.t12Archived');if(badge)badge.textContent='Viaje '+turismoTripStateLabel(trip).toLowerCase();
+  card.insertAdjacentHTML('beforeend',turismoRecordCurrentDates(record,trip)+'<button type="button" class="btn t15HistoricButton" data-trip-id="'+esc(trip.id)+'" onclick="turismoClientTripHistory(this.dataset.tripId)">Ver historial del viaje</button>');
+  if(!isTripActive(trip)){var grid=card.querySelector('.t5DetailGrid');if(grid)Array.from(grid.children).forEach(function(field){if(field.querySelector('dt')?.textContent==='Próxima revisión')field.querySelector('dd').textContent='Fuera de revisión diaria'})}
+ });
+}
+function turismoClientTripHistory(id){turismoCloseClientProfile(false);turismoOpenTrip(id)}
+function turismoOpenRecord(id){TurismoAlpha14.openRecord(id);var record=findRecord(id);if(!record)return;var trip=getTripForRecord(record);t3El('t5RecordBody').insertAdjacentHTML('afterbegin',turismoLifecycleNote(trip)+turismoRecordCurrentDates(record,trip))}
+function turismoCaseCard(record){
+ var markup=TurismoAlpha14.caseCard(record),trip=getTripForRecord(record);if(!trip||isTripActive(trip))return markup;
+ markup=markup.replace(/<div class="t3CaseNext[^\"]*">[\s\S]*?<\/div>/,turismoLifecycleNote(trip));
+ return markup.replace(/<button[^>]*onclick="markReviewedLater\(this.dataset.recordId\)"[^>]*>[\s\S]*?<\/button>/,'');
+}
+function turismoClientCard(group){
+ var list=group.slice().sort(function(a,b){return String(b.actualizado||'').localeCompare(String(a.actualizado||''))}),record=list.find(function(item){return !!String(item.nombre||'').trim()})||list[0],active=list.filter(isOperationalRecord),attrs=' data-record-id="'+esc(record.id)+'"';
+ return '<article class="t15ClientCard"><h3>'+turismoClientNameLink(record)+'</h3>'+turismoChannelButtons(record)+'<p>'+turismoCountLabel(active.length,'gestión en viajes activos','gestiones en viajes activos')+' · '+turismoCountLabel(list.length-active.length,'gestión en el historial','gestiones en el historial')+'</p>'+(active.length?'<p class="t15Quiet">'+active.map(function(item){return esc(item.viaje)}).join(' · ')+'</p>':'<p class="t15Quiet">Cliente disponible para una nueva consulta.</p>')+'<div class="toolbar"><button type="button" class="btn"'+attrs+' onclick="turismoOpenClientProfile(this.dataset.recordId)">Ver ficha e historial</button><button type="button" class="btn btn-primary"'+attrs+' onclick="turismoNewTripForClient(this.dataset.recordId)">+ Otro viaje</button></div></article>';
+}
+function turismoRecordMatchesControls(record){
+ var q=simpleText(t3Value('q')),text=simpleText([record.nombre,record.telefono,record.viaje,record.parada,record.accion,commentsSearchText(record),turismoRecordContacts(record).map(function(contact){return contact.canal+' '+contact.valor}).join(' ')].join(' '));
+ if(q&&!text.includes(q))return false;
+ if(t3Value('filterEstado')&&record.estado!==t3Value('filterEstado')||t3Value('filterViaje')&&(record.viajeId||tripKey(record.viaje))!==t3Value('filterViaje')||t3Value('filterResponsable')&&record.responsable!==t3Value('filterResponsable')||t3Value('filterPrioridad')&&record.prioridad!==t3Value('filterPrioridad'))return false;
+ if(t3El('filterPendientes').checked&&!isPendingConfirmation(record))return false;var due=turismoDueAt(record);return !t3El('filterHoy').checked||isReviewCandidate(record)&&due&&due<=new Date();
+}
+function getCurrentFilteredRecords(){
+ if(turismoHistoricTripId&&t3Value('filterViaje')!==turismoHistoricTripId)turismoHistoricTripId='';
+ if(turismoHistoricTripId)return records.filter(function(record){return (record.viajeId||tripKey(record.viaje))===turismoHistoricTripId&&turismoRecordMatchesControls(record)});
+ var list=TurismoAlpha14.filtered();if(turismoDashboardFilter&&['all','period','channel','state'].includes(turismoDashboardFilter.kind))return list;
+ return list.filter(function(record){return turismoTripState(getTripForRecord(record))!=='eliminado'});
+}
+function renderTable(){
+ TurismoAlpha14.table();var filtered=getCurrentFilteredRecords(),scoped=turismoHistoricTripId||turismoDashboardFilter||t3Value('filterEstado')||t3Value('filterViaje')||t3Value('filterResponsable')||t3Value('filterPrioridad')||t3El('filterHoy').checked||t3El('filterPendientes').checked||t3El('filterArchivados').checked;
+ var source=scoped?filtered:records.filter(turismoRecordMatchesControls),groups=new Map();
+ source.forEach(function(record){var id=record.clienteId||record.id;if(!groups.has(id))groups.set(id,[]);groups.get(id).push(record)});
+ t3El('clientCards').innerHTML=groups.size?Array.from(groups.keys()).map(function(id){return turismoClientCard(records.filter(function(record){return (record.clienteId||record.id)===id}))}).join(''):'<p class="t3Empty">No hay clientes que coincidan con la búsqueda.</p>';
+ t3El('clientDirectoryStats').textContent=turismoCountLabel(groups.size,'cliente','clientes')+' · '+(scoped?'Resultados de los filtros. Su ficha conserva toda la actividad.':'Incluye clientes con historial de viajes retirados.');
+ if(turismoHistoricTripId){['t9CaseFilter','t9ClientFilter'].forEach(function(id){t3El(id).hidden=false;t3El(id).querySelector('span').textContent='Historial de '+getTripById(turismoHistoricTripId)?.name});}
+}
+function populateFilterTripControl(preferred){
+ var select=t3El('filterViaje'),current=preferred===undefined?select.value:preferred,all=!!turismoDashboardFilter||!!turismoHistoricTripId,list=all?TRIPS:t3El('filterArchivados').checked?turismoInactiveTrips():activeTrips();
+ clearSelect(select);addOption(select,'','Todos los viajes');list.forEach(function(trip){addOption(select,trip.id,trip.name+(!isTripActive(trip)?' · '+turismoTripStateLabel(trip):''))});if(list.some(function(trip){return trip.id===current}))select.value=current;
+}
+function turismoTripRecordsView(id,pendingOnly){
+ var trip=getTripById(id);if(!trip)return;resetFilters();turismoHistoricTripId=id;turismoCloseTrip();t3El('filterArchivados').checked=!isTripActive(trip);populateFilterTripControl(id);t3El('filterPendientes').checked=!!pendingOnly;turismoNavigate('followupsPanel');renderTable();
+}
+function resetFilters(){turismoHistoricTripId='';TurismoAlpha14.reset()}
+function onArchivedFilterChange(){turismoHistoricTripId='';populateFilterTripControl('');renderTable()}
+function turismoBrowseMessageTrips(preferred){
+ var select=t3El('t12BrowseTrip'),current=preferred===undefined?select.value:preferred,list=turismoVisibleTrips();clearSelect(select);addOption(select,'','Todos los viajes');list.forEach(function(trip){addOption(select,trip.id,trip.name+(!isTripActive(trip)?' · '+turismoTripStateLabel(trip):''))});if(list.some(function(trip){return trip.id===current}))select.value=current;turismoRenderBrowseMessages();
+}
+function turismoMessageTrips(preferred){
+ var select=t3El('t6MessageTrip');if(!select)return;var current=preferred===undefined?select.value:preferred,list=turismoVisibleTrips();clearSelect(select);addOption(select,'','Seleccionar viaje creado…');list.forEach(function(trip){addOption(select,trip.id,trip.name+' · '+turismoTripStateLabel(trip))});if(list.some(function(trip){return trip.id===current}))select.value=current;populateAdminMessageSelect();turismoRenderMessageLibrary();
+}
+function turismoRenderBrowseMessages(){
+ var tripId=t3Value('t12BrowseTrip'),query=simpleText(t3Value('t12MessageSearch')),scope=t3Value('t12MessageScope'),list=[];
+ turismoVisibleTrips().forEach(function(trip){if(tripId&&trip.id!==tripId||scope==='active'&&!isTripActive(trip)||scope==='archived'&&isTripActive(trip))return;getTripMessages(trip).forEach(function(message){if(!query||simpleText([trip.name,message.name,message.text].join(' ')).includes(query))list.push({trip:trip,message:message})})});
+ t3El('t12BrowseCards').innerHTML=list.map(function(item){var attrs=' data-message-id="'+esc(item.message.id)+'" data-message-trip="'+esc(item.trip.id)+'"';return '<article class="t6MessageCard"><span class="t12MessageTrip">'+esc(item.trip.name)+(!isTripActive(item.trip)?' · '+esc(turismoTripStateLabel(item.trip)):'')+'</span><h3>'+esc(item.message.name)+'</h3><p class="t7MessagePreview">'+esc(shorten(item.message.text||'Mensaje sin texto.',250))+'</p><div class="t12BrowseActions"><button type="button" class="btn"'+attrs+' onclick="turismoViewMessage(this.dataset.messageId,this.dataset.messageTrip)">Ver</button><button type="button" class="btn btn-primary"'+attrs+' onclick="turismoCopyLibraryMessage(this.dataset.messageId,this.dataset.messageTrip)">Copiar</button><button type="button" class="btn"'+attrs+' onclick="turismoEditMessage(this.dataset.messageId,this.dataset.messageTrip)">Editar</button></div></article>'}).join('')||'<p class="t3Empty">No hay mensajes para esta búsqueda.</p>';
+ t3El('t12MessageCount').textContent=turismoCountLabel(list.length,'mensaje disponible','mensajes disponibles');t3El('t14CreateMessage').disabled=!turismoVisibleTrips().length;
+}
+function turismoNavigate(target){if(turismoHistoricTripId&&!['followupsPanel','clientDirectoryPanel','filtersPanel'].includes(target))resetFilters();TurismoAlpha14.navigate(target);if(target==='followupFormPanel')turismoUpdateTripGate()}
+function turismoHandleBack(){if(t3El('t15LifecycleDialog').open){turismoCloseLifecycle();return true}return TurismoAlpha14.back()}
+function turismoStart(){TurismoAlpha14.start();t3El('t15LifecycleDialog').addEventListener('cancel',function(event){event.preventDefault();turismoCloseLifecycle()})}
+</script></body>
 </html>
